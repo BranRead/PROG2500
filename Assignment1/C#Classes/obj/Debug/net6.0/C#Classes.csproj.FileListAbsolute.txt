@@ -1,0 +1,15 @@
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\bin\Debug\net6.0\C#Classes.exe
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\bin\Debug\net6.0\C#Classes.deps.json
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\bin\Debug\net6.0\C#Classes.runtimeconfig.json
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\bin\Debug\net6.0\C#Classes.dll
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\bin\Debug\net6.0\C#Classes.pdb
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\obj\Debug\net6.0\C#Classes.csproj.AssemblyReference.cache
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\obj\Debug\net6.0\C#Classes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\obj\Debug\net6.0\C#Classes.AssemblyInfoInputs.cache
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\obj\Debug\net6.0\C#Classes.AssemblyInfo.cs
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\obj\Debug\net6.0\C#Classes.csproj.CoreCompileInputs.cache
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\obj\Debug\net6.0\C#Classes.dll
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\obj\Debug\net6.0\refint\C#Classes.dll
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\obj\Debug\net6.0\C#Classes.pdb
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\obj\Debug\net6.0\C#Classes.genruntimeconfig.cache
+C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment1\C#Classes\obj\Debug\net6.0\ref\C#Classes.dll
