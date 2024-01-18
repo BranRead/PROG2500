@@ -1,0 +1,24 @@
+﻿<Window x:Class="face_maker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:face_maker"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="⬅" HorizontalAlignment="Left" Margin="647,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.088,0.503" Click="Hair_Button_Back"/>
+        <Button Content="⮕" HorizontalAlignment="Left" Margin="733,37,0,0" VerticalAlignment="Top" Click="Hair_Button_Forward"/>
+        <Button Content="⬅" HorizontalAlignment="Left" Margin="647,81,0,0" VerticalAlignment="Top" Click="Eyes_Button_Back"/>
+        <Button Content="⮕" HorizontalAlignment="Left" Margin="733,81,0,0" VerticalAlignment="Top" Click="Eyes_Button_Forward"/>
+        <Button Content="⬅" HorizontalAlignment="Left" Margin="647,124,0,0" VerticalAlignment="Top" Click="Nose_Button_Back"/>
+        <Button Content="⮕" HorizontalAlignment="Left" Margin="733,124,0,0" VerticalAlignment="Top" Click="Nose_Button_Forward"/>
+        <Button Content="⬅" HorizontalAlignment="Left" Margin="647,167,0,0" VerticalAlignment="Top" Click="Mouth_Button_Back"/>
+        <Button Content="⮕" HorizontalAlignment="Left" Margin="733,167,0,0" VerticalAlignment="Top" Click="Mouth_Button_Forward"/>
+        <Label Content="Hair" HorizontalAlignment="Left" Margin="682,34,0,0" VerticalAlignment="Top" Height="25" FontFamily="Verdana"/>
+        <Label Content="Eyes" HorizontalAlignment="Left" Margin="681,78,0,0" VerticalAlignment="Top" Height="25" FontFamily="Verdana"/>
+        <Label Content="Nose" HorizontalAlignment="Left" Margin="680,121,0,0" VerticalAlignment="Top" Height="25" FontFamily="Verdana"/>
+        <Label Content="Mouth" HorizontalAlignment="Left" Margin="676,164,0,0" VerticalAlignment="Top" Height="25" FontFamily="Verdana"/>
+
+    </Grid>
+</Window>

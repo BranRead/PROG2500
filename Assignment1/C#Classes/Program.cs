@@ -20,3 +20,5 @@ foreach (Person person in arrayList)
         programmer.Work();
     }
 }
+
+Console.WriteLine(arrayList[1].ComputePayCheck());
