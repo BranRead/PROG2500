@@ -1,0 +1,49 @@
+﻿<Window x:Class="face_maker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:face_maker"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF171F80"/>
+            <GradientStop Color="#FF323AB3" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Border Background="#FFABABAB" BorderBrush="Black" BorderThickness="2,2,2,2" Margin="570,106,54,66">
+            <Grid Margin="10,10,10,10">
+                <Button Content="⬅" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.088,0.503" Click="Hair_Button_Back" Height="20"/>
+                <Label Content="Hair" HorizontalAlignment="Center" Margin="0,18,0,0" VerticalAlignment="Top" Height="24" FontFamily="Verdana"/>
+                <Button Content="⮕" HorizontalAlignment="Right" Margin="0,20,10,0" VerticalAlignment="Top" Click="Hair_Button_Forward" RenderTransformOrigin="1.438,-1.802" Height="20"/>
+
+                <Button Content="⬅" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Click="Eyes_Button_Back" Height="20"/>
+                <Label Content="Eyes" HorizontalAlignment="Center" Margin="0,58,0,0" VerticalAlignment="Top" Height="24" FontFamily="Verdana"/>
+                <Button Content="⮕" HorizontalAlignment="Right" Margin="0,60,10,0" VerticalAlignment="Top" Click="Eyes_Button_Forward" Height="20"/>
+
+                <Button Content="⬅" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Click="Nose_Button_Back" Height="20"/>
+                <Label Content="Nose" HorizontalAlignment="Center" Margin="0,98,0,0" VerticalAlignment="Top" Height="24" FontFamily="Verdana"/>
+                <Button Content="⮕" HorizontalAlignment="Right" Margin="0,100,10,0" VerticalAlignment="Top" Click="Nose_Button_Forward" Height="20"/>
+
+                <Button Content="⬅" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Click="Mouth_Button_Back" Height="20"/>
+                <Label Content="Mouth" HorizontalAlignment="Center" Margin="0,138,0,0" VerticalAlignment="Top" Height="24" FontFamily="Verdana" RenderTransformOrigin="-1.226,2.581"/>
+                <Button Content="⮕" HorizontalAlignment="Right" Margin="0,140,10,0" VerticalAlignment="Top" Click="Mouth_Button_Forward" Height="20"/>
+                <Button Content="Randomize" x:Name="randomize" HorizontalAlignment="Center" Margin="0,160,0,1" Click="Randomize_Click" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Height="30" />
+            </Grid>
+        </Border>
+
+        <Image x:Name="BaseFace" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment2\face_maker\images\base_face_light.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+       RenderOptions.EdgeMode="Aliased"/>
+        <Image x:Name="Hair" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment2\face_maker\images\hair1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1"/>
+        <Image x:Name="Eyes" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment2\face_maker\images\eyes1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+       RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1"/>
+        <Image x:Name="Nose" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment2\face_maker\images\nose1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1"/>
+        <Image x:Name="Mouth" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment2\face_maker\images\mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+            RenderOptions.EdgeMode="Aliased"/>
+
+    </Grid>
+</Window>
