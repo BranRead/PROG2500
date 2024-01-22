@@ -8,11 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="dice.png" />
     <None Remove="images\base_face_dark.png" />
     <None Remove="images\base_face_light.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="dice.png" />
     <Resource Include="images\base_face_dark.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

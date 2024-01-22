@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -100,6 +101,25 @@ namespace face_maker
 
             string source = "C:\\Users\\Brandon\\Desktop\\ITProgramming\\Semester 4\\PROG2500\\Assignments\\Assignment2\\face_maker\\images\\" + array[index];
             image.Source = new BitmapImage(new Uri(source, UriKind.Absolute));
+        }
+
+        private void Randomize_Click(object sender, RoutedEventArgs e)
+        {
+            Random rng = new Random();
+            hairArrayIndex = rng.Next(hairArray.Length);
+            eyesArrayIndex = rng.Next(eyesArray.Length);
+            noseArrayIndex = rng.Next(noseArray.Length);
+            mouthArrayIndex = rng.Next(mouthArray.Length);
+            
+            string sourceHair = "C:\\Users\\Brandon\\Desktop\\ITProgramming\\Semester 4\\PROG2500\\Assignments\\Assignment2\\face_maker\\images\\" + hairArray[hairArrayIndex];
+            string sourceEyes = "C:\\Users\\Brandon\\Desktop\\ITProgramming\\Semester 4\\PROG2500\\Assignments\\Assignment2\\face_maker\\images\\" + eyesArray[eyesArrayIndex];
+            string sourceNose = "C:\\Users\\Brandon\\Desktop\\ITProgramming\\Semester 4\\PROG2500\\Assignments\\Assignment2\\face_maker\\images\\" + noseArray[noseArrayIndex];
+            string sourceMouth = "C:\\Users\\Brandon\\Desktop\\ITProgramming\\Semester 4\\PROG2500\\Assignments\\Assignment2\\face_maker\\images\\" + mouthArray[mouthArrayIndex];
+
+            Hair.Source = new BitmapImage(new Uri(sourceHair, UriKind.Absolute));
+            Eyes.Source = new BitmapImage(new Uri(sourceEyes, UriKind.Absolute));
+            Nose.Source = new BitmapImage(new Uri(sourceNose, UriKind.Absolute));
+            Mouth.Source = new BitmapImage(new Uri(sourceMouth, UriKind.Absolute));
         }
     }
 
