@@ -34,15 +34,15 @@
             </Grid>
         </Border>
 
-        <Image x:Name="BaseFace" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment2\face_maker\images\base_face_light.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+        <Image x:Name="BaseFace" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="/images/base_face_light.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
        RenderOptions.EdgeMode="Aliased"/>
-        <Image x:Name="Hair" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment2\face_maker\images\hair1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+        <Image x:Name="Hair" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="/images/hair1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1"/>
-        <Image x:Name="Eyes" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment2\face_maker\images\eyes1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+        <Image x:Name="Eyes" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="/images/eyes1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1"/>
-        <Image x:Name="Nose" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment2\face_maker\images\nose1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+        <Image x:Name="Nose" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="/images/nose1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1"/>
-        <Image x:Name="Mouth" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="C:\Users\Brandon\Desktop\ITProgramming\Semester 4\PROG2500\Assignments\Assignment2\face_maker\images\mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+        <Image x:Name="Mouth" HorizontalAlignment="Center" Height="288" Margin="0,38,0,0" VerticalAlignment="Top" Width="288" Source="/images/mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.EdgeMode="Aliased"/>
 
     </Grid>

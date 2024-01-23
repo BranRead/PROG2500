@@ -21,10 +21,10 @@ namespace face_maker
     /// </summary>
     public partial class MainWindow : Window
     {
-        string[] hairArray = { "hair1.png", "hair2.png", "hair3.png", "hair4.png", "hair5.png", "hair6.png", "hair7.png", "hair8.png" };
-        string[] eyesArray = { "eyes1.png", "eyes2.png", "eyes3.png", "eyes4.png", "eyes5.png", "eyes6.png", "eyes7.png", "eyes8.png" };
-        string[] noseArray = { "nose1.png", "nose2.png", "nose3.png", "nose4.png", "nose5.png", "nose6.png", "nose7.png" };
-        string[] mouthArray = { "mouth1.png", "mouth2.png", "mouth3.png", "mouth4.png", "mouth5.png", "mouth6.png", "mouth7.png" };
+        string[] hairArray = { "/images/hair1.png", "/images/hair2.png", "/images/hair3.png", "/images/hair4.png", "/images/hair5.png", "/images/hair6.png", "/images/hair7.png", "/images/hair8.png" };
+        string[] eyesArray = { "/images/eyes1.png", "/images/eyes2.png", "/images/eyes3.png", "/images/eyes4.png", "/images/eyes5.png", "/images/eyes6.png", "/images/eyes7.png", "/images/eyes8.png" };
+        string[] noseArray = { "/images/nose1.png", "/images/nose2.png", "/images/nose3.png", "/images/nose4.png", "/images/nose5.png", "/images/nose6.png", "/images/nose7.png" };
+        string[] mouthArray = { "/images/mouth1.png", "/images/mouth2.png", "/images/mouth3.png", "/images/mouth4.png", "/images/mouth5.png", "/images/mouth6.png", "/images/mouth7.png" };
         int hairArrayIndex = 0;
         int eyesArrayIndex = 0;
         int noseArrayIndex = 0;
@@ -87,8 +87,7 @@ namespace face_maker
                 index = array.Length - 1;
             }
 
-            string source = "C:\\Users\\Brandon\\Desktop\\ITProgramming\\Semester 4\\PROG2500\\Assignments\\Assignment2\\face_maker\\images\\" + array[index];
-            image.Source = new BitmapImage(new Uri(source, UriKind.Absolute));
+            image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
         }
 
         private static void Next_Image(Image image, string[] array, ref int index)
@@ -99,8 +98,7 @@ namespace face_maker
                 index = 0;
             }
 
-            string source = "C:\\Users\\Brandon\\Desktop\\ITProgramming\\Semester 4\\PROG2500\\Assignments\\Assignment2\\face_maker\\images\\" + array[index];
-            image.Source = new BitmapImage(new Uri(source, UriKind.Absolute));
+            image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
         }
 
         private void Randomize_Click(object sender, RoutedEventArgs e)
@@ -110,16 +108,11 @@ namespace face_maker
             eyesArrayIndex = rng.Next(eyesArray.Length);
             noseArrayIndex = rng.Next(noseArray.Length);
             mouthArrayIndex = rng.Next(mouthArray.Length);
-            
-            string sourceHair = "C:\\Users\\Brandon\\Desktop\\ITProgramming\\Semester 4\\PROG2500\\Assignments\\Assignment2\\face_maker\\images\\" + hairArray[hairArrayIndex];
-            string sourceEyes = "C:\\Users\\Brandon\\Desktop\\ITProgramming\\Semester 4\\PROG2500\\Assignments\\Assignment2\\face_maker\\images\\" + eyesArray[eyesArrayIndex];
-            string sourceNose = "C:\\Users\\Brandon\\Desktop\\ITProgramming\\Semester 4\\PROG2500\\Assignments\\Assignment2\\face_maker\\images\\" + noseArray[noseArrayIndex];
-            string sourceMouth = "C:\\Users\\Brandon\\Desktop\\ITProgramming\\Semester 4\\PROG2500\\Assignments\\Assignment2\\face_maker\\images\\" + mouthArray[mouthArrayIndex];
 
-            Hair.Source = new BitmapImage(new Uri(sourceHair, UriKind.Absolute));
-            Eyes.Source = new BitmapImage(new Uri(sourceEyes, UriKind.Absolute));
-            Nose.Source = new BitmapImage(new Uri(sourceNose, UriKind.Absolute));
-            Mouth.Source = new BitmapImage(new Uri(sourceMouth, UriKind.Absolute));
+            Hair.Source = new BitmapImage(new Uri(hairArray[hairArrayIndex], UriKind.Relative));
+            Eyes.Source = new BitmapImage(new Uri(eyesArray[eyesArrayIndex], UriKind.Relative));
+            Nose.Source = new BitmapImage(new Uri(noseArray[noseArrayIndex], UriKind.Relative));
+            Mouth.Source = new BitmapImage(new Uri(mouthArray[mouthArrayIndex], UriKind.Relative));
         }
     }
 

@@ -8,19 +8,149 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="base_face_light.png" />
     <None Remove="dice.png" />
+    <None Remove="eyes1.png" />
+    <None Remove="hair1.png" />
     <None Remove="images\base_face_dark.png" />
     <None Remove="images\base_face_light.png" />
+    <None Remove="images\eyes1.png" />
+    <None Remove="images\eyes2.png" />
+    <None Remove="images\eyes3.png" />
+    <None Remove="images\eyes4.png" />
+    <None Remove="images\eyes5.png" />
+    <None Remove="images\eyes6.png" />
+    <None Remove="images\eyes7.png" />
+    <None Remove="images\eyes8.png" />
+    <None Remove="images\hair1.png" />
+    <None Remove="images\hair2.png" />
+    <None Remove="images\hair3.png" />
+    <None Remove="images\hair4.png" />
+    <None Remove="images\hair5.png" />
+    <None Remove="images\hair6.png" />
+    <None Remove="images\hair7.png" />
+    <None Remove="images\hair8.png" />
+    <None Remove="images\mouth1.png" />
+    <None Remove="images\mouth2.png" />
+    <None Remove="images\mouth3.png" />
+    <None Remove="images\mouth4.png" />
+    <None Remove="images\mouth5.png" />
+    <None Remove="images\mouth6.png" />
+    <None Remove="images\mouth7.png" />
+    <None Remove="images\nose1.png" />
+    <None Remove="images\nose2.png" />
+    <None Remove="images\nose3.png" />
+    <None Remove="images\nose4.png" />
+    <None Remove="images\nose5.png" />
+    <None Remove="images\nose6.png" />
+    <None Remove="images\nose7.png" />
+    <None Remove="mouth1.png" />
+    <None Remove="nose1.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="base_face_light.png" />
     <Resource Include="dice.png" />
+    <Resource Include="eyes1.png" />
+    <Resource Include="hair1.png" />
     <Resource Include="images\base_face_dark.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="images\base_face_light.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="images\eyes1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\eyes2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\eyes3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\eyes4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\eyes5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\eyes6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\eyes7.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\eyes8.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\hair1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\hair2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\hair3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\hair4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\hair5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\hair6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\hair7.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\hair8.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\mouth1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\mouth2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\mouth3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\mouth4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\mouth5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\mouth6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\mouth7.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\nose1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\nose2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\nose3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\nose4.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\nose5.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\nose6.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="images\nose7.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="mouth1.png" />
+    <Resource Include="nose1.png" />
   </ItemGroup>
 
   <ItemGroup>
