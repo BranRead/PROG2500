@@ -59,7 +59,6 @@ namespace face_maker
         private void Nose_Button_Back(object sender, RoutedEventArgs e)
         {
             Previous_Image(Nose, noseArray, ref noseArrayIndex);
-
         }
 
         private void Nose_Button_Forward(object sender, RoutedEventArgs e)
