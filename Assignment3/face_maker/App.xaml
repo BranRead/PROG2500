@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:face_maker"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="Sixtyfour">/fonts/sixtyfour-regular.ttf#Sixtyfour</FontFamily>
+        <FontFamily x:Key="PixelifySans">/fonts/pixelifysans-regular.ttf#Pixelify Sans</FontFamily>
+        <FontFamily x:Key="Workbench">/fonts/workbench-regular.ttf#Workbench</FontFamily>
     </Application.Resources>
 </Application>

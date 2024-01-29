@@ -11,6 +11,9 @@
     <None Remove="base_face_light.png" />
     <None Remove="dice.png" />
     <None Remove="eyes1.png" />
+    <None Remove="fonts\PixelifySans-Regular.ttf" />
+    <None Remove="fonts\Sixtyfour-Regular.ttf" />
+    <None Remove="fonts\Workbench-Regular.ttf" />
     <None Remove="hair1.png" />
     <None Remove="images\base_face_dark.png" />
     <None Remove="images\base_face_light.png" />
@@ -49,9 +52,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="fonts\PixelifySans-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="fonts\Sixtyfour-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="base_face_light.png" />
     <Resource Include="dice.png" />
     <Resource Include="eyes1.png" />
+    <Resource Include="fonts\Workbench-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="hair1.png" />
     <Resource Include="images\base_face_dark.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
