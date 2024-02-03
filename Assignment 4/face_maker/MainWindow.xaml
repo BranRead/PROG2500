@@ -27,16 +27,28 @@
         <Image x:Name="Mouth" HorizontalAlignment="Left" Height="288" Margin="10,86,0,0" VerticalAlignment="Top" Width="288" Source="/images/mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.EdgeMode="Aliased"/>
 
-        <Border Background="#FFABABAB" BorderBrush="Black" BorderThickness="2,2,2,2" Margin="303,86,10,10">
+        <Border Background="#FFABABAB" BorderBrush="Black" BorderThickness="2,2,2,2" Margin="298,81,15,15">
             <Grid>
                 <Label Content="Customizer" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="39" Width="251" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
                 <RadioButton Content="Light" HorizontalAlignment="Left" Margin="180,54,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" IsChecked="True"/>
                 <RadioButton Content="Dark" HorizontalAlignment="Right" Margin="0,54,180,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
-                <ComboBox x:Name="HairComboBox" Text="Hair 1" HorizontalAlignment="Left" Margin="64,107,0,0" VerticalAlignment="Top" Width="120" IsReadOnly="True" Cursor="Arrow" IsEditable="True" SelectionChanged="HairComboBox_SelectionChanged"/>
-                <ComboBox x:Name="EyesComboBox" Text="Eyes 1" HorizontalAlignment="Right" Margin="0,107,64,0" VerticalAlignment="Top" Width="120" IsReadOnly="True" Cursor="Arrow" IsEditable="True" SelectionChanged="EyesComboBox_SelectionChanged"/>
-                <ComboBox x:Name="NoseComboBox" Text="Nose 1" HorizontalAlignment="Left" Margin="64,181,0,0" VerticalAlignment="Top" Width="120" IsReadOnly="True" Cursor="Arrow" IsEditable="True" SelectionChanged="NoseComboBox_SelectionChanged"/>
-                <ComboBox x:Name="MouthComboBox" Text="Mouth 1" HorizontalAlignment="Right" Margin="0,181,64,0" VerticalAlignment="Top" Width="120" IsReadOnly="True" Cursor="Arrow" IsEditable="True" SelectionChanged="MouthComboBox_SelectionChanged"/>
-                <Slider x:Name="RandomSldier" HorizontalAlignment="Center" Margin="0,288,0,0" VerticalAlignment="Top" Width="120" ValueChanged="Slider_ValueChanged" Foreground="#FF1839BB" Background="#FF777777"/>
+                <Button Content="⬅" HorizontalAlignment="Left" Margin="44,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.088,0.503" Click="Hair_Button_Back" Height="20"/>
+                <Label Content="Hair" HorizontalAlignment="Left" Margin="74,81,0,0" VerticalAlignment="Top" Height="24" FontFamily="Verdana" RenderTransformOrigin="-3.054,0.58"/>
+                <Button Content="⮕" HorizontalAlignment="Right" Margin="0,84,338,0" VerticalAlignment="Top" Click="Hair_Button_Forward" RenderTransformOrigin="1.438,-1.802" Height="20"/>
+
+                <Button Content="⬅" HorizontalAlignment="Left" Margin="287,79,0,0" VerticalAlignment="Top" Click="Eyes_Button_Back" Height="20" RenderTransformOrigin="14.859,-5.851"/>
+                <Label Content="Eyes" HorizontalAlignment="Left" Margin="329,80,0,0" VerticalAlignment="Top" Height="24" FontFamily="Verdana"/>
+                <Button Content="⮕" HorizontalAlignment="Right" Margin="0,83,85,0" VerticalAlignment="Top" Click="Eyes_Button_Forward" Height="20" RenderTransformOrigin="-3.002,1.603"/>
+
+                <Button Content="⬅" HorizontalAlignment="Left" Margin="44,159,0,0" VerticalAlignment="Top" Click="Nose_Button_Back" Height="20" RenderTransformOrigin="2.226,7.432"/>
+                <Label Content="Nose" HorizontalAlignment="Left" Margin="69,0,0,0" VerticalAlignment="Center" Height="24" FontFamily="Verdana" RenderTransformOrigin="-3.148,2.379"/>
+                <Button Content="⮕" HorizontalAlignment="Right" Margin="0,159,351,0" VerticalAlignment="Top" Click="Nose_Button_Forward" Height="20"/>
+
+                <Button Content="⬅" HorizontalAlignment="Left" Margin="280,171,0,0" VerticalAlignment="Top" Click="Mouth_Button_Back" Height="20"/>
+                <Label Content="Mouth" HorizontalAlignment="Left" Margin="301,169,0,0" VerticalAlignment="Top" Height="24" FontFamily="Verdana" RenderTransformOrigin="-1.226,2.581"/>
+                <Button Content="⮕" HorizontalAlignment="Right" Margin="0,167,102,0" VerticalAlignment="Top" Click="Mouth_Button_Forward" Height="20" RenderTransformOrigin="-4.787,2.133"/>
+                <Button Content="Randomize" x:Name="randomize" HorizontalAlignment="Center" Margin="0,289,0,15" Click="Randomize_Click" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Height="30" />
+
                 <CheckBox x:Name="HairCheckbox" Content="Hair" HorizontalAlignment="Left" Margin="170,0,0,80" Height="22" Width="66" VerticalAlignment="Bottom" RenderTransformOrigin="0.451,-2.406" IsChecked="True"/>
                 <CheckBox x:Name="EyesCheckbox" Content="Eyes" HorizontalAlignment="Right" Margin="0,0,170,80" RenderTransformOrigin="0.985,0.563" Height="22" Width="66" VerticalAlignment="Bottom" IsChecked="True"/>
                 <CheckBox x:Name="NoseCheckbox" Content="Nose" HorizontalAlignment="Left" Margin="170,0,0,50" Height="22" Width="66" VerticalAlignment="Bottom" IsChecked="True"/>

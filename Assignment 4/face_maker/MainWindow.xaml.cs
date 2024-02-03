@@ -34,37 +34,75 @@ namespace face_maker
         public MainWindow()
         {
             InitializeComponent();
-            Add_Items_To_ComboBox(HairComboBox, 8, "Hair"); 
-            Add_Items_To_ComboBox(EyesComboBox, 8, "Eyes");
-            Add_Items_To_ComboBox(NoseComboBox, 7, "Nose");
-            Add_Items_To_ComboBox(MouthComboBox, 7, "Mouth");
+            
         }
 
-        private void HairComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Hair_Button_Back(object sender, RoutedEventArgs e)
         {
-            Hair.Source = new BitmapImage(new Uri(hairArray[HairComboBox.SelectedIndex], UriKind.Relative));
-
+            Previous_Image(Hair, hairArray, ref hairArrayIndex);
         }
 
-        private void EyesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Hair_Button_Forward(object sender, RoutedEventArgs e)
         {
-            Eyes.Source = new BitmapImage(new Uri(eyesArray[EyesComboBox.SelectedIndex], UriKind.Relative));
-
+            Next_Image(Hair, hairArray, ref hairArrayIndex);
         }
 
-        private void NoseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Eyes_Button_Back(object sender, RoutedEventArgs e)
         {
-            Nose.Source = new BitmapImage(new Uri(noseArray[NoseComboBox.SelectedIndex], UriKind.Relative));
-
+            Previous_Image(Eyes, eyesArray, ref eyesArrayIndex);
         }
 
-        private void MouthComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Eyes_Button_Forward(object sender, RoutedEventArgs e)
         {
-            Mouth.Source = new BitmapImage(new Uri(mouthArray[MouthComboBox.SelectedIndex], UriKind.Relative));
+            Next_Image(Eyes, eyesArray, ref eyesArrayIndex);
 
         }
 
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void Nose_Button_Back(object sender, RoutedEventArgs e)
+        {
+            Previous_Image(Nose, noseArray, ref noseArrayIndex);
+        }
+
+        private void Nose_Button_Forward(object sender, RoutedEventArgs e)
+        {
+            Next_Image(Nose, noseArray, ref noseArrayIndex);
+
+        }
+
+        private void Mouth_Button_Back(object sender, RoutedEventArgs e)
+        {
+            Previous_Image(Mouth, mouthArray, ref mouthArrayIndex);
+        }
+
+        private void Mouth_Button_Forward(object sender, RoutedEventArgs e)
+        {
+            Next_Image(Mouth, mouthArray, ref mouthArrayIndex);
+
+        }
+
+        private static void Previous_Image(Image image, string[] array, ref int index)
+        {
+            index--;
+            if (index < 0)
+            {
+                index = array.Length - 1;
+            }
+
+            image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
+        }
+
+        private static void Next_Image(Image image, string[] array, ref int index)
+        {
+            index++;
+            if (index > array.Length - 1)
+            {
+                index = 0;
+            }
+
+            image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
+        }
+
+        private void Randomize_Click(object sender, RoutedEventArgs e)
         {
             Random rng = new Random();
 
@@ -101,14 +139,6 @@ namespace face_maker
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
             BaseFace.Source = new BitmapImage(new Uri("/images/base_face_dark.png", UriKind.Relative));
-        }
-
-        private void Add_Items_To_ComboBox(ComboBox dropdown, int numOfItems, String category)
-        {
-            for(int i = 0; i < numOfItems; i++)
-            {
-                dropdown.Items.Add(category + " " + (i + 1).ToString());
-            }
         }
     }
 
