@@ -32,7 +32,8 @@
                 <Label Content="Customizer" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="39" Width="251" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
                 <RadioButton Content="Light" HorizontalAlignment="Left" Margin="180,54,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked" IsChecked="True"/>
                 <RadioButton Content="Dark" HorizontalAlignment="Right" Margin="0,54,180,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
-                <Button Content="⬅" HorizontalAlignment="Left" Margin="44,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.088,0.503" Click="Hair_Button_Back" Height="20"/>
+                
+                <Button Command="{Binding Hair_Button_Back}" Content="⬅" HorizontalAlignment="Left" Margin="44,83,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.088,0.503" Click="Hair_Button_Back" Height="20"/>
                 <Label Content="Hair" HorizontalAlignment="Left" Margin="74,81,0,0" VerticalAlignment="Top" Height="24" FontFamily="Verdana" RenderTransformOrigin="-3.054,0.58"/>
                 <Button Content="⮕" HorizontalAlignment="Right" Margin="0,84,338,0" VerticalAlignment="Top" Click="Hair_Button_Forward" RenderTransformOrigin="1.438,-1.802" Height="20"/>
 
