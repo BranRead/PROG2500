@@ -24,7 +24,6 @@ namespace face_maker
     /// </summary>
     public partial class MainWindow : Window
     {
-
         string[] hairArray = { "/images/hair1.png", "/images/hair2.png", "/images/hair3.png", "/images/hair4.png", "/images/hair5.png", "/images/hair6.png", "/images/hair7.png", "/images/hair8.png" };
         string[] eyesArray = { "/images/eyes1.png", "/images/eyes2.png", "/images/eyes3.png", "/images/eyes4.png", "/images/eyes5.png", "/images/eyes6.png", "/images/eyes7.png", "/images/eyes8.png" };
         string[] noseArray = { "/images/nose1.png", "/images/nose2.png", "/images/nose3.png", "/images/nose4.png", "/images/nose5.png", "/images/nose6.png", "/images/nose7.png" };
@@ -34,12 +33,16 @@ namespace face_maker
         int noseArrayIndex = 0;
         int mouthArrayIndex = 0;
 
-        
+        HotKey BackHair = new(Backward_Hair, true);
+        HotKey ForwardHair = new(Forward_Hair, true);
+        HotKey BackEyes = new(Backward_Eyes, true);
+        HotKey ForwardEyes = new(Forward_Eyes, true);
+        HotKey BackNose = new(Backward_Nose, true);
+        HotKey ForwardNose = new(Forward_Nose, true);
+        HotKey BackMouth = new(Backward_Mouth, true);
+        HotKey ForwardMouth = new(Forward_Mouth, true);
+        HotKey Randomize = new(Randomize_Face, true);
 
-        //Button backButton = Hair_Back_Button;
-
-        public HotKey Back = new(Backward_Hair, true);
-        public HotKey Forward = new(Forward_Hair, true);
         Editer editer = new();
 
         public MainWindow()
@@ -47,12 +50,30 @@ namespace face_maker
             InitializeComponent();
             DataContext = new
             {
-                back = Back,
-                forward = Forward,
+                backHair = BackHair,
+                forwardHair = ForwardHair,
+                backEyes = BackEyes,
+                forwardEyes = ForwardEyes,
+                backNose = BackNose,
+                forwardNose = ForwardNose,
+                backMouth = BackMouth,
+                forwardMouth = ForwardMouth,
+                randomize = Randomize
             };
 
-            InputBindings.Add(new KeyBinding(Back, new KeyGesture(Key.F1, ModifierKeys.None)));
-            InputBindings.Add(new KeyBinding(Forward, new KeyGesture(Key.F2, ModifierKeys.None)));
+            InputBindings.Add(new KeyBinding(BackHair, new KeyGesture(Key.F1, ModifierKeys.None)));
+            InputBindings.Add(new KeyBinding(ForwardHair, new KeyGesture(Key.F2, ModifierKeys.None)));
+
+            InputBindings.Add(new KeyBinding(BackEyes, new KeyGesture(Key.F3, ModifierKeys.None)));
+            InputBindings.Add(new KeyBinding(ForwardEyes, new KeyGesture(Key.F4, ModifierKeys.None)));
+            
+            InputBindings.Add(new KeyBinding(BackNose, new KeyGesture(Key.F5, ModifierKeys.None)));
+            InputBindings.Add(new KeyBinding(ForwardNose, new KeyGesture(Key.F6, ModifierKeys.None)));
+            
+            InputBindings.Add(new KeyBinding(BackMouth, new KeyGesture(Key.F7, ModifierKeys.None)));
+            InputBindings.Add(new KeyBinding(ForwardMouth, new KeyGesture(Key.F8, ModifierKeys.None)));
+
+            InputBindings.Add(new KeyBinding(Randomize, new KeyGesture(Key.R, ModifierKeys.Control)));
 
         }
 
@@ -72,74 +93,57 @@ namespace face_maker
             thisEditer.Next_Image(HairImage, thisWindow.hairArray, ref thisWindow.hairArrayIndex);
         }
 
-        public void Hair_Button_Back(object sender, RoutedEventArgs e)
+        public static void Backward_Eyes()
         {
-            //Previous_Image(Hair, hairArray, ref hairArrayIndex);
+            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+            Editer thisEditer = thisWindow.editer;
+            Image EyesImage = thisWindow.Eyes;
+            thisEditer.Previous_Image(EyesImage, thisWindow.eyesArray, ref thisWindow.eyesArrayIndex);
         }
 
-        private void Hair_Button_Forward(object sender, RoutedEventArgs e)
+        public static void Forward_Eyes()
         {
-            //Next_Image(Hair, hairArray, ref hairArrayIndex);
+            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+            Editer thisEditer = thisWindow.editer;
+            Image EyesImage = thisWindow.Eyes;
+            thisEditer.Next_Image(EyesImage, thisWindow.eyesArray, ref thisWindow.eyesArrayIndex);
         }
 
-        private void Eyes_Button_Back(object sender, RoutedEventArgs e)
+        public static void Backward_Nose()
         {
-            //Previous_Image(Eyes, eyesArray, ref eyesArrayIndex);
+            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+            Editer thisEditer = thisWindow.editer;
+            Image NoseImage = thisWindow.Nose;
+            thisEditer.Previous_Image(NoseImage, thisWindow.noseArray, ref thisWindow.noseArrayIndex);
         }
 
-        private void Eyes_Button_Forward(object sender, RoutedEventArgs e)
+        public static void Forward_Nose()
         {
-            //Next_Image(Eyes, eyesArray, ref eyesArrayIndex);
-
+            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+            Editer thisEditer = thisWindow.editer;
+            Image NoseImage = thisWindow.Nose;
+            thisEditer.Next_Image(NoseImage, thisWindow.noseArray, ref thisWindow.noseArrayIndex);
         }
 
-        private void Nose_Button_Back(object sender, RoutedEventArgs e)
+        public static void Backward_Mouth()
         {
-            //Previous_Image(Nose, noseArray, ref noseArrayIndex);
+            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+            Editer thisEditer = thisWindow.editer;
+            Image MouthImage = thisWindow.Mouth;
+            thisEditer.Previous_Image(MouthImage, thisWindow.mouthArray, ref thisWindow.mouthArrayIndex);
         }
 
-        private void Nose_Button_Forward(object sender, RoutedEventArgs e)
+        public static void Forward_Mouth()
         {
-            //Next_Image(Nose, noseArray, ref noseArrayIndex);
-
+            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+            Editer thisEditer = thisWindow.editer;
+            Image MouthImage = thisWindow.Mouth;
+            thisEditer.Next_Image(MouthImage, thisWindow.mouthArray, ref thisWindow.mouthArrayIndex);
         }
 
-        private void Mouth_Button_Back(object sender, RoutedEventArgs e)
+        public static void Randomize_Face()
         {
-            //Previous_Image(Mouth, mouthArray, ref mouthArrayIndex);
-        }
-
-        private void Mouth_Button_Forward(object sender, RoutedEventArgs e)
-        {
-            //Next_Image(Mouth, mouthArray, ref mouthArrayIndex);
-
-        }
-
-        private static void Previous_Image(Image image, string[] array, ref int index)
-        {
-            //index--;
-            //if (index < 0)
-           //{
-                //index = array.Length - 1;
-           // }
-
-            //image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
-        }
-
-        private static void Next_Image(Image image, string[] array, ref int index)
-        {
-           // index++;
-            //if (index > array.Length - 1)
-            //{
-              //  index = 0;
-           // }
-
-            //image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
-        }
-
-        private void Randomize_Click(object sender, RoutedEventArgs e)
-        {
-            
+            System.Windows.MessageBox.Show("Random");
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
