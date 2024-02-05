@@ -45,5 +45,13 @@ namespace face_maker
 
             image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
         }
+
+        public void Random_Image(Image image, string[] array, ref int index)
+        {
+            Random rng = new Random();
+            index = rng.Next(array.Length);
+            image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
+           
+        }
     }
 }

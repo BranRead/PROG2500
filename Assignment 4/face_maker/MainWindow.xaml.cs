@@ -28,6 +28,7 @@ namespace face_maker
         string[] eyesArray = { "/images/eyes1.png", "/images/eyes2.png", "/images/eyes3.png", "/images/eyes4.png", "/images/eyes5.png", "/images/eyes6.png", "/images/eyes7.png", "/images/eyes8.png" };
         string[] noseArray = { "/images/nose1.png", "/images/nose2.png", "/images/nose3.png", "/images/nose4.png", "/images/nose5.png", "/images/nose6.png", "/images/nose7.png" };
         string[] mouthArray = { "/images/mouth1.png", "/images/mouth2.png", "/images/mouth3.png", "/images/mouth4.png", "/images/mouth5.png", "/images/mouth6.png", "/images/mouth7.png" };
+        
         int hairArrayIndex = 0;
         int eyesArrayIndex = 0;
         int noseArrayIndex = 0;
@@ -75,6 +76,9 @@ namespace face_maker
 
             InputBindings.Add(new KeyBinding(Randomize, new KeyGesture(Key.R, ModifierKeys.Control)));
 
+            InputBindings.Add(new KeyBinding(Randomize, new KeyGesture(Key.R, ModifierKeys.Control)));
+            InputBindings.Add(new KeyBinding(Randomize, new KeyGesture(Key.R, ModifierKeys.Control)));
+
         }
 
         public static void Backward_Hair()
@@ -83,6 +87,8 @@ namespace face_maker
             Editer thisEditer = thisWindow.editer;
             Image HairImage = thisWindow.Hair;
             thisEditer.Previous_Image(HairImage, thisWindow.hairArray, ref thisWindow.hairArrayIndex);
+
+            Update_Label("Hair", thisWindow.HairLabel, thisWindow.hairArrayIndex);
         }
 
         public static void Forward_Hair()
@@ -91,6 +97,8 @@ namespace face_maker
             Editer thisEditer = thisWindow.editer;
             Image HairImage = thisWindow.Hair;
             thisEditer.Next_Image(HairImage, thisWindow.hairArray, ref thisWindow.hairArrayIndex);
+
+            Update_Label("Hair", thisWindow.HairLabel, thisWindow.hairArrayIndex);
         }
 
         public static void Backward_Eyes()
@@ -99,6 +107,8 @@ namespace face_maker
             Editer thisEditer = thisWindow.editer;
             Image EyesImage = thisWindow.Eyes;
             thisEditer.Previous_Image(EyesImage, thisWindow.eyesArray, ref thisWindow.eyesArrayIndex);
+
+            Update_Label("Eyes", thisWindow.EyesLabel, thisWindow.eyesArrayIndex);
         }
 
         public static void Forward_Eyes()
@@ -107,6 +117,8 @@ namespace face_maker
             Editer thisEditer = thisWindow.editer;
             Image EyesImage = thisWindow.Eyes;
             thisEditer.Next_Image(EyesImage, thisWindow.eyesArray, ref thisWindow.eyesArrayIndex);
+
+            Update_Label("Eyes", thisWindow.EyesLabel, thisWindow.eyesArrayIndex);
         }
 
         public static void Backward_Nose()
@@ -115,6 +127,8 @@ namespace face_maker
             Editer thisEditer = thisWindow.editer;
             Image NoseImage = thisWindow.Nose;
             thisEditer.Previous_Image(NoseImage, thisWindow.noseArray, ref thisWindow.noseArrayIndex);
+
+            Update_Label("Nose", thisWindow.NoseLabel, thisWindow.noseArrayIndex);
         }
 
         public static void Forward_Nose()
@@ -123,6 +137,8 @@ namespace face_maker
             Editer thisEditer = thisWindow.editer;
             Image NoseImage = thisWindow.Nose;
             thisEditer.Next_Image(NoseImage, thisWindow.noseArray, ref thisWindow.noseArrayIndex);
+
+            Update_Label("Nose", thisWindow.NoseLabel, thisWindow.noseArrayIndex);
         }
 
         public static void Backward_Mouth()
@@ -131,6 +147,8 @@ namespace face_maker
             Editer thisEditer = thisWindow.editer;
             Image MouthImage = thisWindow.Mouth;
             thisEditer.Previous_Image(MouthImage, thisWindow.mouthArray, ref thisWindow.mouthArrayIndex);
+
+            Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthArrayIndex);
         }
 
         public static void Forward_Mouth()
@@ -139,22 +157,37 @@ namespace face_maker
             Editer thisEditer = thisWindow.editer;
             Image MouthImage = thisWindow.Mouth;
             thisEditer.Next_Image(MouthImage, thisWindow.mouthArray, ref thisWindow.mouthArrayIndex);
+
+            Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthArrayIndex);
         }
 
         public static void Randomize_Face()
         {
-            System.Windows.MessageBox.Show("Random");
+            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+            Editer thisEditer = thisWindow.editer;
+
+            if(thisWindow.HairCheckbox.IsChecked == true)
+            {
+                thisEditer.Random_Image(thisWindow.Hair, thisWindow.hairArray, ref thisWindow.hairArrayIndex);
+            }
+            if (thisWindow.EyesCheckbox.IsChecked == true)
+            {
+                thisEditer.Random_Image(thisWindow.Eyes, thisWindow.eyesArray, ref thisWindow.eyesArrayIndex);
+            }
+            if(thisWindow.NoseCheckbox.IsChecked == true)
+            {
+                thisEditer.Random_Image(thisWindow.Nose, thisWindow.noseArray, ref thisWindow.noseArrayIndex);
+            }
+            if(thisWindow.MouthCheckbox.IsChecked == true)
+            {
+                thisEditer.Random_Image(thisWindow.Mouth, thisWindow.mouthArray, ref thisWindow.mouthArrayIndex);
+            }
         }
 
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        public static void Update_Label(string part, Label label, int index)
         {
-            //BaseFace.Source = new BitmapImage(new Uri("/images/base_face_light.png", UriKind.Relative));
-        }
-
-        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
-        {
-            //BaseFace.Source = new BitmapImage(new Uri("/images/base_face_dark.png", UriKind.Relative));
-        }
+            label.Content = part + " " + (index+=1);
+        } 
     }
 
 }
