@@ -53,5 +53,10 @@ namespace face_maker
             image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
            
         }
+
+        public void Set_Base_Face(string path, Image image) 
+        {
+            image.Source = new BitmapImage(new Uri(path, UriKind.Relative));
+        }
     }
 }

@@ -43,6 +43,9 @@ namespace face_maker
         HotKey BackMouth = new(Backward_Mouth, true);
         HotKey ForwardMouth = new(Forward_Mouth, true);
         HotKey Randomize = new(Randomize_Face, true);
+        HotKey NewDarkSkin = new(New_Dark_Skin, true);
+        HotKey NewLightSkin = new(New_Light_Skin, true);
+        HotKey Exit = new(Exit_App, true);
 
         Editer editer = new();
 
@@ -59,7 +62,10 @@ namespace face_maker
                 forwardNose = ForwardNose,
                 backMouth = BackMouth,
                 forwardMouth = ForwardMouth,
-                randomize = Randomize
+                randomize = Randomize,
+                newDarkSkin = NewDarkSkin,
+                newLightSkin = NewLightSkin,
+                exit = Exit
             };
 
             InputBindings.Add(new KeyBinding(BackHair, new KeyGesture(Key.F1, ModifierKeys.None)));
@@ -76,9 +82,11 @@ namespace face_maker
 
             InputBindings.Add(new KeyBinding(Randomize, new KeyGesture(Key.R, ModifierKeys.Control)));
 
-            InputBindings.Add(new KeyBinding(Randomize, new KeyGesture(Key.R, ModifierKeys.Control)));
-            InputBindings.Add(new KeyBinding(Randomize, new KeyGesture(Key.R, ModifierKeys.Control)));
+            InputBindings.Add(new KeyBinding(NewDarkSkin, new KeyGesture(Key.D, ModifierKeys.Control)));
+            InputBindings.Add(new KeyBinding(NewLightSkin, new KeyGesture(Key.L, ModifierKeys.Control)));
 
+            InputBindings.Add(new KeyBinding(Exit, new KeyGesture(Key.Q, ModifierKeys.Control)));
+            
         }
 
         public static void Backward_Hair()
@@ -188,6 +196,27 @@ namespace face_maker
         {
             label.Content = part + " " + (index+=1);
         } 
+
+        public static void New_Dark_Skin()
+        {
+            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+            Editer thisEditer = thisWindow.editer;
+
+            thisEditer.Set_Base_Face("/images/base_face_dark.png", thisWindow.BaseFace);
+        }
+
+        public static void New_Light_Skin()
+        {
+            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+            Editer thisEditer = thisWindow.editer;
+
+            thisEditer.Set_Base_Face("/images/base_face_light.png", thisWindow.BaseFace);
+        }
+
+        public static void Exit_App()
+        {
+            ((MainWindow)Application.Current.MainWindow).Close();
+        }
     }
 
 }
