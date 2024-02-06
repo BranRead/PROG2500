@@ -1,14 +1,11 @@
 # Face Changer
 ## Description 
-### This is the second iteration on the face changer assignment completed for assignment 2
-### There is a radio button for skin tone, dropdowns for facial features, checkboxes for which features to change when randomizing and a slider to randomize 
+### This is the third iteration on the face changer assignment completed for assignment 2
+### Checkboxes for features to randomize and buttons to change individual features. All mapped to keys. F1 and F2 for backwards and forwards for hair, F3 and F4 for backwards and forwards for eyes, and so on.  
 ## Technical
-### I use string arrays of the paths to the images.
-### The randomize button picks a random index for each array and then the corresponding image is changed for each.
-### The radio buttons select which skin tone is used. 
-### This would be an excellant use case for the slider or a color picker.
-### The checkboxes allow a specific feature to be changed with the randomize slider
-### The slider is just a fun way to choose a random face and was a requirement of the assignment.
-### Each time a dropdown option is selected the index of the dropdown is used to find the path for that correspondingimage within its array.  
+### Each png is labeled the same: "<bodyPart><number>" So this time I don't have any arrays. I have one int tracking that <number> and functions get passed a string value which caN be used for <bodyPart>
+### The randomize button picks a random feature for each selected. In the range of 1 - <number of pictures>
+### Skin tone choices are in the File menu. 
+### The user can also quit through here and with Ctrl+Q.
 ### I got the images for the faces here: https://elvgames.itch.io/free-facesets-pixelart 
 ### I altered the nose to make different nose options and I altered the images to give seperate png's of each part I needed!
