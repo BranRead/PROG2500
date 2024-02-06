@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,28 +24,30 @@ namespace face_maker
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
-        string[] hairArray = { "/images/hair1.png", "/images/hair2.png", "/images/hair3.png", "/images/hair4.png", "/images/hair5.png", "/images/hair6.png", "/images/hair7.png", "/images/hair8.png" };
-        string[] eyesArray = { "/images/eyes1.png", "/images/eyes2.png", "/images/eyes3.png", "/images/eyes4.png", "/images/eyes5.png", "/images/eyes6.png", "/images/eyes7.png", "/images/eyes8.png" };
-        string[] noseArray = { "/images/nose1.png", "/images/nose2.png", "/images/nose3.png", "/images/nose4.png", "/images/nose5.png", "/images/nose6.png", "/images/nose7.png" };
-        string[] mouthArray = { "/images/mouth1.png", "/images/mouth2.png", "/images/mouth3.png", "/images/mouth4.png", "/images/mouth5.png", "/images/mouth6.png", "/images/mouth7.png" };
+    {   
+        int hairPicInt = 1;
+        int hairNumOfPhotos = 8;
         
-        int hairArrayIndex = 0;
-        int eyesArrayIndex = 0;
-        int noseArrayIndex = 0;
-        int mouthArrayIndex = 0;
+        int eyesPicInt = 1;
+        int eyesNumOfPhotos = 8;
 
-        HotKey BackHair = new(Backward_Hair, true);
-        HotKey ForwardHair = new(Forward_Hair, true);
-        HotKey BackEyes = new(Backward_Eyes, true);
-        HotKey ForwardEyes = new(Forward_Eyes, true);
-        HotKey BackNose = new(Backward_Nose, true);
-        HotKey ForwardNose = new(Forward_Nose, true);
-        HotKey BackMouth = new(Backward_Mouth, true);
-        HotKey ForwardMouth = new(Forward_Mouth, true);
+        int nosePicInt = 1;
+        int noseNumOfPhotos = 7;
+
+        int mouthPicInt = 1;
+        int mouthNumOfPhotos = 7;
+
+        HotKey BackHair = new(() => Change_Body_Part("Hair", false), true);
+        HotKey ForwardHair = new(() => Change_Body_Part("Hair", true), true);
+        HotKey BackEyes = new(() => Change_Body_Part("Eyes", false), true);
+        HotKey ForwardEyes = new(() => Change_Body_Part("Eyes", true), true);
+        HotKey BackNose = new(() => Change_Body_Part("Nose", false), true);
+        HotKey ForwardNose = new(() => Change_Body_Part("Nose", true), true);
+        HotKey BackMouth = new(() => Change_Body_Part("Mouth", false), true);
+        HotKey ForwardMouth = new(() => Change_Body_Part("Mouth", true), true);
         HotKey Randomize = new(Randomize_Face, true);
-        HotKey NewDarkSkin = new(New_Dark_Skin, true);
-        HotKey NewLightSkin = new(New_Light_Skin, true);
+        HotKey NewDarkSkin = new(() => New_Skin_Tone("dark"), true);
+        HotKey NewLightSkin = new(() => New_Skin_Tone("light"), true);
         HotKey Exit = new(Exit_App, true);
 
         Editer editer = new();
@@ -89,85 +92,86 @@ namespace face_maker
             
         }
 
-        public static void Backward_Hair()
+        public static void Change_Body_Part(string part, bool isForward)
         {
             MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
             Editer thisEditer = thisWindow.editer;
-            Image HairImage = thisWindow.Hair;
-            thisEditer.Previous_Image(HairImage, thisWindow.hairArray, ref thisWindow.hairArrayIndex);
 
-            Update_Label("Hair", thisWindow.HairLabel, thisWindow.hairArrayIndex);
+            if (part == "Hair")
+            {
+                Image HairImage = thisWindow.Hair;
+                if (!isForward) 
+                {
+                    thisEditer.Previous_Image(HairImage, part.ToLower(), ref thisWindow.hairPicInt, thisWindow.hairNumOfPhotos);
+                }
+                else
+                {
+                    thisEditer.Next_Image(HairImage, part.ToLower(), ref thisWindow.hairPicInt, thisWindow.hairNumOfPhotos);
+                }
+                Update_Label(part, thisWindow.HairLabel, thisWindow.hairPicInt);
+            }
+
+            if(part == "Eyes")
+            {
+                Image EyesImage = thisWindow.Eyes;
+                if (!isForward)
+                {
+                    thisEditer.Previous_Image(EyesImage, part.ToLower(), ref thisWindow.eyesPicInt, thisWindow.eyesNumOfPhotos);
+                }
+                else
+                {
+                    thisEditer.Next_Image(EyesImage, part.ToLower(), ref thisWindow.eyesPicInt, thisWindow.eyesNumOfPhotos);
+                }
+                Update_Label(part, thisWindow.EyesLabel, thisWindow.eyesPicInt);
+            }
+            
+            if(part == "Nose")
+            {
+                Image NoseImage = thisWindow.Nose;
+                if (!isForward)
+                {
+                    thisEditer.Previous_Image(NoseImage, part.ToLower(), ref thisWindow.nosePicInt, thisWindow.noseNumOfPhotos);
+                } else
+                {
+                    thisEditer.Next_Image(NoseImage, part.ToLower(), ref thisWindow.nosePicInt, thisWindow.noseNumOfPhotos);
+                }
+                Update_Label(part, thisWindow.NoseLabel, thisWindow.nosePicInt);
+            }
+           
+            if (part == "Mouth")
+            {
+                Image MouthImage = thisWindow.Mouth;
+                if (!isForward)
+                {
+                    thisEditer.Previous_Image(MouthImage, part.ToLower(), ref thisWindow.mouthPicInt, thisWindow.mouthNumOfPhotos);
+                } else
+                {
+                    thisEditer.Next_Image(MouthImage, part.ToLower(), ref thisWindow.mouthPicInt, thisWindow.mouthNumOfPhotos);
+                }
+                Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthPicInt);
+            }
         }
 
-        public static void Forward_Hair()
-        {
-            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
-            Editer thisEditer = thisWindow.editer;
-            Image HairImage = thisWindow.Hair;
-            thisEditer.Next_Image(HairImage, thisWindow.hairArray, ref thisWindow.hairArrayIndex);
+        // Left this in for assignment purposes
+        //public static void Backward_Mouth()
+        //{
+        //    MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+        //    Editer thisEditer = thisWindow.editer;
+        //    Image MouthImage = thisWindow.Mouth;
+        //    thisEditer.Previous_Image(MouthImage, thisWindow.mouthArray, ref thisWindow.mouthArrayIndex);
 
-            Update_Label("Hair", thisWindow.HairLabel, thisWindow.hairArrayIndex);
-        }
+        //   Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthArrayIndex);
+        //}
 
-        public static void Backward_Eyes()
-        {
-            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
-            Editer thisEditer = thisWindow.editer;
-            Image EyesImage = thisWindow.Eyes;
-            thisEditer.Previous_Image(EyesImage, thisWindow.eyesArray, ref thisWindow.eyesArrayIndex);
+        //public static void Forward_Mouth()
+        //{
+        //    MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+        //    Editer thisEditer = thisWindow.editer;
+        //    Image MouthImage = thisWindow.Mouth;
+        //    thisEditer.Next_Image(MouthImage, thisWindow.mouthArray, ref thisWindow.mouthArrayIndex);
 
-            Update_Label("Eyes", thisWindow.EyesLabel, thisWindow.eyesArrayIndex);
-        }
-
-        public static void Forward_Eyes()
-        {
-            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
-            Editer thisEditer = thisWindow.editer;
-            Image EyesImage = thisWindow.Eyes;
-            thisEditer.Next_Image(EyesImage, thisWindow.eyesArray, ref thisWindow.eyesArrayIndex);
-
-            Update_Label("Eyes", thisWindow.EyesLabel, thisWindow.eyesArrayIndex);
-        }
-
-        public static void Backward_Nose()
-        {
-            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
-            Editer thisEditer = thisWindow.editer;
-            Image NoseImage = thisWindow.Nose;
-            thisEditer.Previous_Image(NoseImage, thisWindow.noseArray, ref thisWindow.noseArrayIndex);
-
-            Update_Label("Nose", thisWindow.NoseLabel, thisWindow.noseArrayIndex);
-        }
-
-        public static void Forward_Nose()
-        {
-            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
-            Editer thisEditer = thisWindow.editer;
-            Image NoseImage = thisWindow.Nose;
-            thisEditer.Next_Image(NoseImage, thisWindow.noseArray, ref thisWindow.noseArrayIndex);
-
-            Update_Label("Nose", thisWindow.NoseLabel, thisWindow.noseArrayIndex);
-        }
-
-        public static void Backward_Mouth()
-        {
-            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
-            Editer thisEditer = thisWindow.editer;
-            Image MouthImage = thisWindow.Mouth;
-            thisEditer.Previous_Image(MouthImage, thisWindow.mouthArray, ref thisWindow.mouthArrayIndex);
-
-            Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthArrayIndex);
-        }
-
-        public static void Forward_Mouth()
-        {
-            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
-            Editer thisEditer = thisWindow.editer;
-            Image MouthImage = thisWindow.Mouth;
-            thisEditer.Next_Image(MouthImage, thisWindow.mouthArray, ref thisWindow.mouthArrayIndex);
-
-            Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthArrayIndex);
-        }
+        //    Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthArrayIndex);
+        //}
 
         public static void Randomize_Face()
         {
@@ -176,42 +180,45 @@ namespace face_maker
 
             if(thisWindow.HairCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Hair, thisWindow.hairArray, ref thisWindow.hairArrayIndex);
+                thisEditer.Random_Image(thisWindow.Hair, "hair", ref thisWindow.hairPicInt, thisWindow.hairNumOfPhotos);
+                Update_Label("Hair", thisWindow.HairLabel, thisWindow.hairPicInt);
             }
             if (thisWindow.EyesCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Eyes, thisWindow.eyesArray, ref thisWindow.eyesArrayIndex);
+                thisEditer.Random_Image(thisWindow.Eyes, "eyes", ref thisWindow.eyesPicInt, thisWindow.eyesNumOfPhotos);
+                Update_Label("Eyes", thisWindow.EyesLabel, thisWindow.eyesPicInt);
+
             }
-            if(thisWindow.NoseCheckbox.IsChecked == true)
+            if (thisWindow.NoseCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Nose, thisWindow.noseArray, ref thisWindow.noseArrayIndex);
+                thisEditer.Random_Image(thisWindow.Nose, "nose", ref thisWindow.nosePicInt, thisWindow.noseNumOfPhotos);
+                Update_Label("Nose", thisWindow.NoseLabel, thisWindow.nosePicInt);
             }
             if(thisWindow.MouthCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Mouth, thisWindow.mouthArray, ref thisWindow.mouthArrayIndex);
+                thisEditer.Random_Image(thisWindow.Mouth, "mouth", ref thisWindow.mouthPicInt, thisWindow.mouthNumOfPhotos);
+                Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthPicInt);
             }
         }
 
         public static void Update_Label(string part, TextBlock label, int index)
         {
-            label.Text = part + " " + (index+=1);
+            label.Text = part + " " + (index);
         } 
 
-        public static void New_Dark_Skin()
+        public static void New_Skin_Tone(string tone)
         {
             MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
             Editer thisEditer = thisWindow.editer;
-
-            thisEditer.Set_Base_Face("/images/base_face_dark.png", thisWindow.BaseFace);
+            thisEditer.Set_Base_Face(tone, thisWindow.BaseFace);
         }
 
-        public static void New_Light_Skin()
-        {
-            MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
-            Editer thisEditer = thisWindow.editer;
-
-            thisEditer.Set_Base_Face("/images/base_face_light.png", thisWindow.BaseFace);
-        }
+        //public static void New_Light_Skin()
+        //{
+        //    MainWindow thisWindow = ((MainWindow)Application.Current.MainWindow);
+        //    Editer thisEditer = thisWindow.editer;
+        //    thisEditer.Set_Base_Face("/images/base_face_light.png", thisWindow.BaseFace);
+        //}
 
         public static void Exit_App()
         {

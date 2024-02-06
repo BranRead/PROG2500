@@ -23,40 +23,40 @@ namespace face_maker
 {
     internal class Editer
     {
-        public void Previous_Image(Image image, string[] array, ref int index)
+        public void Previous_Image(Image image, string part, ref int index, int numOfPhotos)
         {
             index--;
-            if (index < 0)
+            if (index < 1)
             {
-                index = array.Length - 1;
+                index = numOfPhotos;
             }
 
-            image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
+            image.Source = new BitmapImage(new Uri("/images/" + part + index + ".png", UriKind.Relative));
 
         }
 
-        public void Next_Image(Image image, string[] array, ref int index)
+        public void Next_Image(Image image, string part, ref int index, int numOfPhotos)
         {
             index++;
-            if (index > array.Length - 1)
+            if (index > numOfPhotos)
             {
-              index = 0;
+                index = 1;
             }
 
-            image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
+            image.Source = new BitmapImage(new Uri("/images/" + part + index + ".png", UriKind.Relative));
         }
 
-        public void Random_Image(Image image, string[] array, ref int index)
+        public void Random_Image(Image image, string part, ref int index, int numOfPhotos)
         {
             Random rng = new Random();
-            index = rng.Next(array.Length);
-            image.Source = new BitmapImage(new Uri(array[index], UriKind.Relative));
-           
+            index = rng.Next(1, numOfPhotos);
+            image.Source = new BitmapImage(new Uri("/images/" + part + index + ".png", UriKind.Relative));
+
         }
 
-        public void Set_Base_Face(string path, Image image) 
+        public void Set_Base_Face(string part, Image image) 
         {
-            image.Source = new BitmapImage(new Uri(path, UriKind.Relative));
+            image.Source = new BitmapImage(new Uri("/images/base_face_" + part + ".png", UriKind.Relative));
         }
     }
 }
