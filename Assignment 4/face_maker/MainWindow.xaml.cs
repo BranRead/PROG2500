@@ -192,9 +192,9 @@ namespace face_maker
             }
         }
 
-        public static void Update_Label(string part, Label label, int index)
+        public static void Update_Label(string part, TextBlock label, int index)
         {
-            label.Content = part + " " + (index+=1);
+            label.Text = part + " " + (index+=1);
         } 
 
         public static void New_Dark_Skin()

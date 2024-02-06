@@ -32,43 +32,43 @@
         </Menu>
         <Label Content="Face Changer Extraordinaire!" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Height="42" Width="392" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Foreground="White"/>
 
-        <Border Background="#FFABABAB" BorderBrush="Black" BorderThickness="2,2,2,2" Margin="10,64,15,10">
+        <Border Background="#FFABABAB" BorderBrush="Black" BorderThickness="2,2,2,2" Margin="130,64,130,10">
             <Grid>
 
                 <Label Content="Customizer" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="39" Width="251" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16"/>
 
-                <Button Command="{Binding backHair}" Content="⬅" HorizontalAlignment="Left" Margin="61,56,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.088,0.503" Height="20"/>
-                <Label x:Name="HairLabel" Content="Hair 1" HorizontalAlignment="Left" Margin="82,54,0,0" VerticalAlignment="Top" Height="24" RenderTransformOrigin="-3.054,0.58"/>
-                <Button Command="{Binding forwardHair}" Content="⮕" HorizontalAlignment="Left" Margin="132,56,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.438,-1.802" Height="20"/>
+                <Button Command="{Binding backHair}" Content="⬅" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.088,0.503" Height="20" Width="16"/>
+                <TextBlock x:Name="HairLabel" TextAlignment="Center"  Text="Hair 1" HorizontalAlignment="Left" Margin="26,103,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="-3.054,0.58" Width="60"/>
+                <Button Command="{Binding forwardHair}" Content="⮕" HorizontalAlignment="Left" Margin="86,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.438,-1.802" Height="20" Width="16"/>
 
-                <Button Command="{Binding backEyes}" Content="⬅" HorizontalAlignment="Right" Margin="0,204,694,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="14.859,-5.851"/>
-                <Label x:Name="EyesLabel" Content="Eyes 1" HorizontalAlignment="Right" Margin="0,202,644,0" VerticalAlignment="Top" Height="24"/>
-                <Button Command="{Binding forwardEyes}" Content="⮕" HorizontalAlignment="Right" Margin="0,204,623,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="-3.002,1.603"/>
+                <Button Command="{Binding backEyes}" Content="⬅" Margin="10,150,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="14.859,-5.851" HorizontalAlignment="Left" Width="16"/>
+                <TextBlock x:Name="EyesLabel" TextAlignment="Center" Text="Eyes 1" HorizontalAlignment="Left" Margin="26,153,0,0" VerticalAlignment="Top" Height="20" Width="60"/>
+                <Button Command="{Binding forwardEyes}" Content="⮕" HorizontalAlignment="Left" Margin="86,150,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="-3.002,1.603" Width="16"/>
 
-                <Button Command="{Binding backNose}" Content="⬅" HorizontalAlignment="Left" Margin="61,135,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="2.226,7.432"/>
-                <Label x:Name="NoseLabel" Content="Nose 1" HorizontalAlignment="Left" Margin="80,133,0,0" VerticalAlignment="Top" Height="24" RenderTransformOrigin="-3.148,2.379"/>
-                <Button Command="{Binding forwardNose}" Content="⮕" Margin="132,135,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="2.312,0.252" HorizontalAlignment="Left" Width="16"/>
+                <Button Command="{Binding backNose}" Content="⬅" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="2.226,7.432" Width="16"/>
+                <TextBlock x:Name="NoseLabel" TextAlignment="Center" Text="Nose 1" HorizontalAlignment="Left" Margin="26,203,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="-3.148,2.379" Width="60"/>
+                <Button Command="{Binding forwardNose}" Content="⮕" Margin="86,200,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="2.312,0.252" HorizontalAlignment="Left" Width="16"/>
 
-                <Button Command="{Binding backMouth}" Content="⬅" HorizontalAlignment="Right" Margin="0,277,694,0" VerticalAlignment="Top" Height="20"/>
-                <Label x:Name="MouthLabel" Content="Mouth 1" HorizontalAlignment="Right" Margin="0,275,639,0" VerticalAlignment="Top" Height="24" RenderTransformOrigin="-1.226,2.581"/>
-                <Button Command="{Binding forwardMouth}" Content="⮕" HorizontalAlignment="Right" Margin="0,277,623,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="-4.787,2.133"/>
+                <Button Command="{Binding backMouth}" Content="⬅" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" Height="20" Width="16"/>
+                <TextBlock x:Name="MouthLabel" TextAlignment="Center" Text="Mouth 1" HorizontalAlignment="Left" Margin="26,253,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="-1.226,2.581" Width="60"/>
+                <Button Command="{Binding forwardMouth}" Content="⮕" HorizontalAlignment="Left" Margin="86,250,0,0" VerticalAlignment="Top" Height="20" RenderTransformOrigin="-4.787,2.133" Width="16"/>
 
-                <Button Command="{Binding randomize}" Content="Randomize" x:Name="randomize" Margin="0,291,83,0" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" />
+                <Button Command="{Binding randomize}" Content="Randomize" x:Name="randomize" Margin="0,245,10,0" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" HorizontalAlignment="Right" RenderTransformOrigin="0.554,-0.665" Height="30" VerticalAlignment="Top" />
 
-                <CheckBox x:Name="HairCheckbox" Content="Hair" HorizontalAlignment="Left" Margin="606,0,0,121" Height="22" Width="50" VerticalAlignment="Bottom" RenderTransformOrigin="0.451,-2.406" IsChecked="True"/>
-                <CheckBox x:Name="EyesCheckbox" Content="Eyes" HorizontalAlignment="Right" Margin="0,0,10,121" RenderTransformOrigin="0.985,0.563" Height="22" Width="66" VerticalAlignment="Bottom" IsChecked="True"/>
-                <CheckBox x:Name="NoseCheckbox" Content="Nose" HorizontalAlignment="Left" Margin="607,0,0,84" Height="22" Width="49" VerticalAlignment="Bottom" IsChecked="True"/>
-                <CheckBox x:Name="MouthCheckbox" Content="Mouth" HorizontalAlignment="Right" Margin="0,0,10,84" Height="22" Width="66" VerticalAlignment="Bottom" IsChecked="True"/>
+                <CheckBox x:Name="HairCheckbox" Content="Hair" HorizontalAlignment="Right" Margin="0,100,10,0" Width="65" RenderTransformOrigin="0.451,-2.406" IsChecked="True" Height="20" VerticalAlignment="Top"/>
+                <CheckBox x:Name="EyesCheckbox" Content="Eyes" Margin="0,130,10,0" RenderTransformOrigin="0.985,0.563" IsChecked="True" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="65"/>
+                <CheckBox x:Name="NoseCheckbox" Content="Nose" HorizontalAlignment="Right" Margin="0,160,10,0" Height="20" Width="65" VerticalAlignment="Top" IsChecked="True" RenderTransformOrigin="1.049,0.493"/>
+                <CheckBox x:Name="MouthCheckbox" Content="Mouth" HorizontalAlignment="Right" Margin="0,190,10,0" Width="65" IsChecked="True" Height="22" VerticalAlignment="Top"/>
 
                 <Image x:Name="BaseFace" HorizontalAlignment="Center" Height="288" VerticalAlignment="Top" Width="288" Source="/images/base_face_light.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
-       RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1" Margin="0,30,0,0"/>
-                <Image x:Name="Hair" HorizontalAlignment="Center" Height="288" Margin="0,30,0,0" VerticalAlignment="Top" Width="288" Source="/images/hair1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+       RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1" Margin="0,10,0,0"/>
+                <Image x:Name="Hair" HorizontalAlignment="Center" Height="288" Margin="0,10,0,0" VerticalAlignment="Top" Width="288" Source="/images/hair1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2"/>
-                <Image x:Name="Eyes" HorizontalAlignment="Center" Height="288" Margin="0,30,0,0" VerticalAlignment="Top" Width="288" Source="/images/eyes1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                <Image x:Name="Eyes" HorizontalAlignment="Center" Height="288" Margin="0,10,0,0" VerticalAlignment="Top" Width="288" Source="/images/eyes1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2"/>
-                <Image x:Name="Nose" HorizontalAlignment="Center" Height="288" Margin="0,30,0,0" VerticalAlignment="Top" Width="288" Source="/images/nose1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                <Image x:Name="Nose" HorizontalAlignment="Center" Height="288" Margin="0,10,0,0" VerticalAlignment="Top" Width="288" Source="/images/nose1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2"/>
-                <Image x:Name="Mouth" HorizontalAlignment="Center" Height="288" Margin="0,30,0,0" VerticalAlignment="Top" Width="288" Source="/images/mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                <Image x:Name="Mouth" HorizontalAlignment="Center" Height="288" Margin="0,10,0,0" VerticalAlignment="Top" Width="288" Source="/images/mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
             RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2"/>
 
             </Grid>
