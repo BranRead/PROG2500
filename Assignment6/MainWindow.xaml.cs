@@ -16,7 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
-
+using static System.Windows.Forms.LinkLabel;
+using System.IO;
 
 namespace face_maker
 
@@ -39,6 +40,9 @@ namespace face_maker
 
         int mouthPicInt = 1;
         int mouthNumOfPhotos = 7;
+
+
+        string fNameUserEnter;
 
         HotKey BackHair = new(() => Change_Body_Part("Hair", false), true);
         HotKey ForwardHair = new(() => Change_Body_Part("Hair", true), true);
@@ -103,6 +107,7 @@ namespace face_maker
             HobbyDropdown.Items.Add("Painting");
             HobbyDropdown.Items.Add("Weight Lifting");
             HobbyDropdown.SelectedIndex = 0;
+
 
             InputBindings.Add(new KeyBinding(BackHair, new KeyGesture(Key.F1, ModifierKeys.None)));
             InputBindings.Add(new KeyBinding(ForwardHair, new KeyGesture(Key.F2, ModifierKeys.None)));
@@ -201,7 +206,6 @@ namespace face_maker
             {
                 thisEditer.Random_Image(thisWindow.Eyes, "eyes", ref thisWindow.eyesPicInt, thisWindow.eyesNumOfPhotos);
                 Update_Label("Eyes", thisWindow.EyesLabel, thisWindow.eyesPicInt);
-
             }
             if (thisWindow.NoseCheckbox.IsChecked == true)
             {
@@ -240,23 +244,32 @@ namespace face_maker
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             HelpNavigator Nav_by_Topic = HelpNavigator.Topic;
             System.Windows.Forms.Help.ShowHelp(null, "FaceChanger.chm", Nav_by_Topic, "About.htm");
         }
 
         private void Tab(object sender, RoutedEventArgs e)
         {
-            String fNameUserEnter = fNameInput.Text;
-            fNameUserEnter ??= "--Enter First Name--";
+            //MainWindow thisWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
+            fNameUserEnter = fNameInput.Text;
+            if(fNameUserEnter == null || fNameUserEnter == "")
+            {
+                fNameUserEnter = "--Enter First Name--";
+            }
+           
+            string lNameUserEnter = lNameInput.Text;
+            if(lNameUserEnter == null || lNameUserEnter == "")
+            {
+                lNameUserEnter = "--Enter Last Name--";
+            }
+            
+            string addressUserEnter = addressInput.Text;
+            if(addressUserEnter == null || addressUserEnter == "")
+            {
+                addressUserEnter = "--Enter Address--";
+            }
 
-            String lNameUserEnter = lNameInput.Text;
-            lNameUserEnter ??= "--Enter Last Name--";
-
-            String addressUserEnter = addressInput.Text;
-            addressUserEnter ??= "--Enter Address--";
-
-            String petUserEnter;
+            string petUserEnter;
             if (dogLoverRadio.IsChecked == true)
             {
                 petUserEnter = "dog";
@@ -282,6 +295,18 @@ namespace face_maker
             editer.Update_Face("Nose", NoseResult, nosePicInt);
             editer.Update_Face("Mouth", MouthResult, mouthPicInt);
         }
-    }
 
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            string[] data = { fNameUserEnter };
+
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            using (System.IO.StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(docPath, "WriteLines.txt")))
+            {
+                foreach (string line in data)
+                    outputFile.WriteLine(line);
+            }
+        }
+    }
 }

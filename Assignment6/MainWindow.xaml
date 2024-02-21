@@ -132,15 +132,16 @@
                     <TextBlock x:Name="hobby" HorizontalAlignment="Left" Margin="57,159,0,0" TextWrapping="Wrap" Text="Hobby:" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
                     <TextBlock x:Name="lovedPet" HorizontalAlignment="Left" Margin="57,187,0,0" TextWrapping="Wrap" Text="Loved pet:" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
                     <Image x:Name="BaseFaceResult" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="288" Source="/images/base_face_light.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
-                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1" Margin="317,22,0,0" Grid.Column="2"/>
-                    <Image x:Name="HairResult" HorizontalAlignment="Left" Height="288" Margin="317,22,0,0" VerticalAlignment="Top" Width="288" Source="/images/hair1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1" Margin="173,10,0,0" Grid.Column="2"/>
+                    <Image x:Name="HairResult" HorizontalAlignment="Left" Height="288" Margin="173,10,0,0" VerticalAlignment="Top" Width="288" Source="/images/hair1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                         RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Grid.Column="2"/>
-                    <Image x:Name="EyesResult" HorizontalAlignment="Left" Height="288" Margin="317,22,0,0" VerticalAlignment="Top" Width="288" Source="/images/eyes1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                    <Image x:Name="EyesResult" HorizontalAlignment="Left" Height="288" Margin="173,10,0,0" VerticalAlignment="Top" Width="288" Source="/images/eyes1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                         RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Grid.Column="2"/>
-                    <Image x:Name="NoseResult" HorizontalAlignment="Left" Height="288" Margin="317,22,0,0" VerticalAlignment="Top" Width="288" Source="/images/nose1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                    <Image x:Name="NoseResult" HorizontalAlignment="Left" Height="288" Margin="173,10,0,0" VerticalAlignment="Top" Width="288" Source="/images/nose1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                         RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Grid.Column="2"/>
-                    <Image x:Name="MouthResult" HorizontalAlignment="Left" Height="288" Margin="317,22,0,0" VerticalAlignment="Top" Width="288" Source="/images/mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                    <Image x:Name="MouthResult" HorizontalAlignment="Left" Height="288" Margin="173,10,0,0" VerticalAlignment="Top" Width="288" Source="/images/mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                         RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Grid.Column="2"/>
+                    <Button x:Name="saveButton" Grid.Column="2" Content="Save" HorizontalAlignment="Left" Margin="592,131,0,0" VerticalAlignment="Top" Click="saveButton_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>
