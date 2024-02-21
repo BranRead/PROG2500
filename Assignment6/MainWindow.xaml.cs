@@ -247,7 +247,40 @@ namespace face_maker
 
         private void Tab(object sender, RoutedEventArgs e)
         {
-            fName.Text = "This worked";
+            String fNameUserEnter = fNameInput.Text;
+            fNameUserEnter ??= "--Enter First Name--";
+
+            String lNameUserEnter = lNameInput.Text;
+            lNameUserEnter ??= "--Enter Last Name--";
+
+            String addressUserEnter = addressInput.Text;
+            addressUserEnter ??= "--Enter Address--";
+
+            String petUserEnter;
+            if (dogLoverRadio.IsChecked == true)
+            {
+                petUserEnter = "dog";
+            }
+            else if (catLoverRadio.IsChecked == true)
+            {
+               petUserEnter = "cat";
+            }
+            else
+            {
+                petUserEnter = "--Select pet--";
+            }
+
+            fName.Text = "First name: " + fNameUserEnter;
+            lName.Text = "Last name: " + lNameUserEnter;
+            address.Text = "Address: " + addressUserEnter; 
+            occupation.Text = "Occupation: " + OccupationDropdown.Text;
+            hobby.Text = "Hobby: " + HobbyDropdown.Text;
+            lovedPet.Text = "Loved pet: " + petUserEnter;
+
+            editer.Update_Face("hair", HairResult, hairPicInt);
+            editer.Update_Face("eyes", EyesResult, eyesPicInt);
+            editer.Update_Face("Nose", NoseResult, nosePicInt);
+            editer.Update_Face("Mouth", MouthResult, mouthPicInt);
         }
     }
 
