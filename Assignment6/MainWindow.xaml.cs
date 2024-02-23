@@ -29,18 +29,19 @@ namespace face_maker
     public partial class MainWindow : Window
     {   
 
-        int hairPicInt = 1;
+        int hairPicOption = 1;
         int hairNumOfPhotos = 8;
         
-        int eyesPicInt = 1;
+        int eyesPicOption = 1;
         int eyesNumOfPhotos = 8;
 
-        int nosePicInt = 1;
+        int nosePicOption = 1;
         int noseNumOfPhotos = 7;
 
-        int mouthPicInt = 1;
+        int mouthPicOption = 1;
         int mouthNumOfPhotos = 7;
 
+        List<TabItem> pages = new List<TabItem>();
 
         string fNameUserEnter;
 
@@ -62,6 +63,8 @@ namespace face_maker
 
         public MainWindow()
         {
+            
+
             InitializeComponent();
             DataContext = new
             {
@@ -79,6 +82,11 @@ namespace face_maker
                 help = Help,
                 exit = Exit
             };
+
+            pages.Add(basicInfo);
+            pages.Add(about);
+            pages.Add(faceChanger);
+            pages.Add(finish);
 
             OccupationDropdown.Items.Add("--Select Occupation--");
             OccupationDropdown.Items.Add("Doctor");
@@ -142,13 +150,13 @@ namespace face_maker
                 Image HairImage = thisWindow.Hair;
                 if (!isForward) 
                 {
-                    thisEditer.Previous_Image(HairImage, part.ToLower(), ref thisWindow.hairPicInt, thisWindow.hairNumOfPhotos);
+                    thisEditer.Previous_Image(HairImage, part.ToLower(), ref thisWindow.hairPicOption, thisWindow.hairNumOfPhotos);
                 }
                 else
                 {
-                    thisEditer.Next_Image(HairImage, part.ToLower(), ref thisWindow.hairPicInt, thisWindow.hairNumOfPhotos);
+                    thisEditer.Next_Image(HairImage, part.ToLower(), ref thisWindow.hairPicOption, thisWindow.hairNumOfPhotos);
                 }
-                Update_Label(part, thisWindow.HairLabel, thisWindow.hairPicInt);
+                Update_Label(part, thisWindow.HairLabel, thisWindow.hairPicOption);
             }
 
             if(part == "Eyes")
@@ -156,13 +164,13 @@ namespace face_maker
                 Image EyesImage = thisWindow.Eyes;
                 if (!isForward)
                 {
-                    thisEditer.Previous_Image(EyesImage, part.ToLower(), ref thisWindow.eyesPicInt, thisWindow.eyesNumOfPhotos);
+                    thisEditer.Previous_Image(EyesImage, part.ToLower(), ref thisWindow.eyesPicOption, thisWindow.eyesNumOfPhotos);
                 }
                 else
                 {
-                    thisEditer.Next_Image(EyesImage, part.ToLower(), ref thisWindow.eyesPicInt, thisWindow.eyesNumOfPhotos);
+                    thisEditer.Next_Image(EyesImage, part.ToLower(), ref thisWindow.eyesPicOption, thisWindow.eyesNumOfPhotos);
                 }
-                Update_Label(part, thisWindow.EyesLabel, thisWindow.eyesPicInt);
+                Update_Label(part, thisWindow.EyesLabel, thisWindow.eyesPicOption);
             }
             
             if(part == "Nose")
@@ -170,12 +178,12 @@ namespace face_maker
                 Image NoseImage = thisWindow.Nose;
                 if (!isForward)
                 {
-                    thisEditer.Previous_Image(NoseImage, part.ToLower(), ref thisWindow.nosePicInt, thisWindow.noseNumOfPhotos);
+                    thisEditer.Previous_Image(NoseImage, part.ToLower(), ref thisWindow.nosePicOption, thisWindow.noseNumOfPhotos);
                 } else
                 {
-                    thisEditer.Next_Image(NoseImage, part.ToLower(), ref thisWindow.nosePicInt, thisWindow.noseNumOfPhotos);
+                    thisEditer.Next_Image(NoseImage, part.ToLower(), ref thisWindow.nosePicOption, thisWindow.noseNumOfPhotos);
                 }
-                Update_Label(part, thisWindow.NoseLabel, thisWindow.nosePicInt);
+                Update_Label(part, thisWindow.NoseLabel, thisWindow.nosePicOption);
             }
            
             if (part == "Mouth")
@@ -183,12 +191,12 @@ namespace face_maker
                 Image MouthImage = thisWindow.Mouth;
                 if (!isForward)
                 {
-                    thisEditer.Previous_Image(MouthImage, part.ToLower(), ref thisWindow.mouthPicInt, thisWindow.mouthNumOfPhotos);
+                    thisEditer.Previous_Image(MouthImage, part.ToLower(), ref thisWindow.mouthPicOption, thisWindow.mouthNumOfPhotos);
                 } else
                 {
-                    thisEditer.Next_Image(MouthImage, part.ToLower(), ref thisWindow.mouthPicInt, thisWindow.mouthNumOfPhotos);
+                    thisEditer.Next_Image(MouthImage, part.ToLower(), ref thisWindow.mouthPicOption, thisWindow.mouthNumOfPhotos);
                 }
-                Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthPicInt);
+                Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthPicOption);
             }
         }
 
@@ -199,23 +207,23 @@ namespace face_maker
 
             if(thisWindow.HairCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Hair, "hair", ref thisWindow.hairPicInt, thisWindow.hairNumOfPhotos);
-                Update_Label("Hair", thisWindow.HairLabel, thisWindow.hairPicInt);
+                thisEditer.Random_Image(thisWindow.Hair, "hair", ref thisWindow.hairPicOption, thisWindow.hairNumOfPhotos);
+                Update_Label("Hair", thisWindow.HairLabel, thisWindow.hairPicOption);
             }
             if (thisWindow.EyesCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Eyes, "eyes", ref thisWindow.eyesPicInt, thisWindow.eyesNumOfPhotos);
-                Update_Label("Eyes", thisWindow.EyesLabel, thisWindow.eyesPicInt);
+                thisEditer.Random_Image(thisWindow.Eyes, "eyes", ref thisWindow.eyesPicOption, thisWindow.eyesNumOfPhotos);
+                Update_Label("Eyes", thisWindow.EyesLabel, thisWindow.eyesPicOption);
             }
             if (thisWindow.NoseCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Nose, "nose", ref thisWindow.nosePicInt, thisWindow.noseNumOfPhotos);
-                Update_Label("Nose", thisWindow.NoseLabel, thisWindow.nosePicInt);
+                thisEditer.Random_Image(thisWindow.Nose, "nose", ref thisWindow.nosePicOption, thisWindow.noseNumOfPhotos);
+                Update_Label("Nose", thisWindow.NoseLabel, thisWindow.nosePicOption);
             }
             if(thisWindow.MouthCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Mouth, "mouth", ref thisWindow.mouthPicInt, thisWindow.mouthNumOfPhotos);
-                Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthPicInt);
+                thisEditer.Random_Image(thisWindow.Mouth, "mouth", ref thisWindow.mouthPicOption, thisWindow.mouthNumOfPhotos);
+                Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthPicOption);
             }
         }
 
@@ -290,28 +298,105 @@ namespace face_maker
             hobby.Text = "Hobby: " + HobbyDropdown.Text;
             lovedPet.Text = "Loved pet: " + petUserEnter;
 
-            editer.Update_Face("hair", HairResult, hairPicInt);
-            editer.Update_Face("eyes", EyesResult, eyesPicInt);
-            editer.Update_Face("Nose", NoseResult, nosePicInt);
-            editer.Update_Face("Mouth", MouthResult, mouthPicInt);
+            editer.Update_Face("hair", HairResult, hairPicOption);
+            editer.Update_Face("eyes", EyesResult, eyesPicOption);
+            editer.Update_Face("Nose", NoseResult, nosePicOption);
+            editer.Update_Face("Mouth", MouthResult, mouthPicOption);
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            string[] data = { fNameUserEnter };
+
+            string[] data = { 
+                fName.Text, 
+                lName.Text, 
+                address.Text, 
+                occupation.Text, 
+                hobby.Text, 
+                lovedPet.Text, 
+                "Hair Option: " + hairPicOption,
+                "Eyes Option: " + eyesPicOption,
+                "Nose Option: " + nosePicOption,
+                "Mouth Option: " + mouthPicOption,
+            };
 
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-            using (System.IO.StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(docPath, "WriteLines.txt")))
+            using (System.IO.StreamWriter outputFile = new StreamWriter(System.IO.Path.Combine(docPath, "character.txt")))
             {
                 foreach (string line in data)
                     outputFile.WriteLine(line);
             }
         }
 
+        private void Previous_Page(object sender, RoutedEventArgs e)
+        {
+            int newActivePageIndex = Page_isSelected() - 1;
+            if(newActivePageIndex < 0)
+            {
+                newActivePageIndex = 0;
+            }
+
+            pages[newActivePageIndex].IsSelected = true;
+        }
+
         private void Next_Page(object sender, RoutedEventArgs e)
         {
-            about.IsSelected = true;
+            int newActivePageIndex = Page_isSelected() + 1;
+            if (newActivePageIndex >= pages.Count)
+            {
+                newActivePageIndex = pages.Count - 1;
+            }
+
+            pages[newActivePageIndex].IsSelected = true;
+        }
+
+       
+        private int Page_isSelected()
+        {
+            int index = 0;
+
+            foreach(TabItem page in pages)
+            {
+                if (page.IsSelected)
+                {
+                    return index;
+                }
+                index++;
+            }
+
+            return 0;
+        }
+
+        private void clearButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "character.txt")))
+            {
+                File.Delete(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "character.txt"));
+                fNameInput.Clear();
+                lNameInput.Clear();
+                addressInput.Clear();
+                OccupationDropdown.SelectedIndex = 0;
+                HobbyDropdown.SelectedIndex = 0;
+                dogLoverRadio.IsChecked = false;
+                catLoverRadio.IsChecked = false;
+                hairPicOption = 1;
+                eyesPicOption = 1;
+                nosePicOption = 1;
+                mouthPicOption = 1;
+                editer.Update_Face("hair", Hair, hairPicOption);
+                Update_Label("Hair", HairLabel, hairPicOption);
+
+                editer.Update_Face("eyes", Eyes, eyesPicOption);
+                Update_Label("Eyes", EyesLabel, eyesPicOption);
+
+                editer.Update_Face("nose", Nose, nosePicOption);
+                Update_Label("Nose", NoseLabel, nosePicOption);
+
+                editer.Update_Face("mouth", Mouth, mouthPicOption);
+                Update_Label("Mouth", MouthLabel, mouthPicOption);
+                pages[0].IsSelected = true;
+            }
         }
     }
 }
