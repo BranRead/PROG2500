@@ -308,5 +308,10 @@ namespace face_maker
                     outputFile.WriteLine(line);
             }
         }
+
+        private void Next_Page(object sender, RoutedEventArgs e)
+        {
+            about.IsSelected = true;
+        }
     }
 }
