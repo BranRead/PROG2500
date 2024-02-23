@@ -258,21 +258,26 @@ namespace face_maker
 
         private void Tab(object sender, RoutedEventArgs e)
         {
+            Update_Output();
+        }
+
+        private void Update_Output()
+        {
             //MainWindow thisWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
             fNameUserEnter = fNameInput.Text;
-            if(fNameUserEnter == null || fNameUserEnter == "")
+            if (fNameUserEnter == null || fNameUserEnter == "")
             {
                 fNameUserEnter = "--Enter First Name--";
             }
-           
+
             string lNameUserEnter = lNameInput.Text;
-            if(lNameUserEnter == null || lNameUserEnter == "")
+            if (lNameUserEnter == null || lNameUserEnter == "")
             {
                 lNameUserEnter = "--Enter Last Name--";
             }
-            
+
             string addressUserEnter = addressInput.Text;
-            if(addressUserEnter == null || addressUserEnter == "")
+            if (addressUserEnter == null || addressUserEnter == "")
             {
                 addressUserEnter = "--Enter Address--";
             }
@@ -284,7 +289,7 @@ namespace face_maker
             }
             else if (catLoverRadio.IsChecked == true)
             {
-               petUserEnter = "cat";
+                petUserEnter = "cat";
             }
             else
             {
@@ -293,7 +298,7 @@ namespace face_maker
 
             fName.Text = "First name: " + fNameUserEnter;
             lName.Text = "Last name: " + lNameUserEnter;
-            address.Text = "Address: " + addressUserEnter; 
+            address.Text = "Address: " + addressUserEnter;
             occupation.Text = "Occupation: " + OccupationDropdown.Text;
             hobby.Text = "Hobby: " + HobbyDropdown.Text;
             lovedPet.Text = "Loved pet: " + petUserEnter;
@@ -346,6 +351,11 @@ namespace face_maker
             if (newActivePageIndex >= pages.Count)
             {
                 newActivePageIndex = pages.Count - 1;
+            }
+
+            if(newActivePageIndex == pages.Count - 1)
+            {
+                Update_Output();
             }
 
             pages[newActivePageIndex].IsSelected = true;
