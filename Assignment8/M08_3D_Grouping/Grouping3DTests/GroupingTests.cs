@@ -54,7 +54,7 @@ namespace Cube3D.Tests
             Grouping g = null;
             g = new Grouping(distanceThreshold, num_of_points);  // size of master list generated
             g.MasterList[0] = new Dot(0, 0, 0);  // Replace random points to these
-            g.MasterList[1] = new Dot(0, 0, 100);
+            g.MasterList[1] = new Dot(0, 101, 0);
 
             // each sublist is a grouping
             List<List<Dot>> sublists = g.applyThreseholdsMakeGroups();
@@ -74,7 +74,7 @@ namespace Cube3D.Tests
 
             // 2nd group?
             Actual_Group_Point = sublists[1][0];  // 1st and only Point of group 01
-            Expected_Group_Point = new Dot(0, 0, 100); // expected Point of group 01
+            Expected_Group_Point = new Dot(0, 101, 0); // expected Point of group 01
             same = (Actual_Group_Point.X == Expected_Group_Point.X)
                 & (Actual_Group_Point.Y == Expected_Group_Point.Y)
                 & (Actual_Group_Point.Z == Expected_Group_Point.Z);
@@ -89,7 +89,7 @@ namespace Cube3D.Tests
             Grouping g = null;
             g = new Grouping(distanceThreshold, num_of_points);  // size of master list generated
             g.MasterList[0] = new Dot(0, 0, 0);  // Replace random points to these
-            g.MasterList[1] = new Dot(100, 99, 99);
+            g.MasterList[1] = new Dot(101, 0, 0);
 
             // each sublist is a grouping
             List<List<Dot>> sublists = g.applyThreseholdsMakeGroups();
@@ -109,7 +109,7 @@ namespace Cube3D.Tests
 
             // 2nd group?
             Actual_Group_Point = sublists[1][0];  // 1st and only Point of group 01
-            Expected_Group_Point = new Dot(100, 99, 99); // expected Point of group 01
+            Expected_Group_Point = new Dot(101, 0, 0); // expected Point of group 01
             same = (Actual_Group_Point.X == Expected_Group_Point.X)
                 & (Actual_Group_Point.Y == Expected_Group_Point.Y)
                 & (Actual_Group_Point.Z == Expected_Group_Point.Z);
