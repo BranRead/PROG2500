@@ -17,7 +17,7 @@ namespace Assignment9
 
             //Util-3 Look for the name in the connectionStrings section.
             ConnectionStringSettings settings =
-            ConfigurationManager.ConnectionStrings["Assignment5.Properties.Settings.connString"];
+            ConfigurationManager.ConnectionStrings["Assignment9.Properties.Settings.connString"];
 
             //If found, return the connection string.
             if (settings != null)

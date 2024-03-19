@@ -130,7 +130,7 @@ namespace Assignment9
             {
                 CmdString = "SELECT person.fName, " +
                     "person.lName, " +
-                    "person.address, " +
+                    "person.city, " +
                     "face.baseFace, " +
                     "face.hair, " +
                     "face.eyes, " +
@@ -138,7 +138,7 @@ namespace Assignment9
                     "face.mouth " +
                     "FROM person " +
                     "INNER JOIN face " +
-                    "[ ON (person.id = face.personId) ]";
+                    "ON (person.id = face.personId);";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 dt = new DataTable("dataReadOut");
@@ -148,22 +148,45 @@ namespace Assignment9
         }
 
         // Add a person record with these attributes...SQL INSERT command
-        private void addPerson(String fn, String ln, String address)
+        private void addPerson(String fn, String ln, String address, String baseFace, String hair, String eyes, String nose, String mouth)
         {
             // Old school connection
             SqlConnection conn = new SqlConnection(connString);
 
             // old school insert statement...note Trace output should show format of SQL Insert command
             String cmd_Text_Details = "INSERT INTO person(fName, lName, city)  VALUES('" + fn + "', '" + ln + "', '" + address + "');";
-            String cmd_Text_Face = "INSERT INTO face(fName, lName, city)  VALUES('" + fn + "', '" + ln + "', '" + address + "');";
-            Trace.Write(cmd_Text);
+            Trace.Write(cmd_Text_Details);
 
             // DB insert in try-catch
             try
             {
                 // Example of C# named parameters...a good idea for important library calls
-                SqlCommand command = new SqlCommand(cmdText: cmd_Text, connection: conn);
+                SqlCommand command = new SqlCommand(cmdText: cmd_Text_Details, connection: conn);
                 command.Connection.Open();
+                command.ExecuteNonQuery();  //does the actual insert statement
+                
+            }
+            catch { System.Windows.MessageBox.Show("DB Add Exception"); }
+
+
+            int personId = 0;
+           
+            String cmd_Select_User = "SELECT Id from person where fName = '" + fn + "' AND lName = '" + ln + "' AND city = '" + address + "';";
+            Trace.Write(cmd_Select_User);
+            try
+            {
+                SqlCommand command = new SqlCommand(cmdText: cmd_Select_User, connection: conn);
+               
+                personId = (int) command.ExecuteScalar();
+            } catch { System.Windows.MessageBox.Show("DB Select Exception"); }
+
+
+            String cmd_Text_Face = "INSERT INTO face(personID, baseFace, hair, eyes, nose, mouth)  VALUES('" + personId + "', '" + baseFace + "', '" + hair + "', '" + eyes + "', '" + nose + "', '" + mouth + "');";
+            try
+            {
+                // Example of C# named parameters...a good idea for important library calls
+                SqlCommand command = new SqlCommand(cmdText: cmd_Text_Face, connection: conn);
+                
                 command.ExecuteNonQuery();  //does the actual insert statement
             }
             catch { System.Windows.MessageBox.Show("DB Add Exception"); }
@@ -330,11 +353,16 @@ namespace Assignment9
             String fn = fNameInput.Text;
             String ln = lNameInput.Text;
             String a = addressInput.Text;
+            String baseFace = "Base Face 1";
+            String hair = HairLabel.Text;
+            String eyes = EyesLabel.Text;
+            String nose = NoseLabel.Text;
+            String mouth = MouthLabel.Text;
 
             // Add this record if values not empty
             if (fn != "" && ln != "" && a != "")
             {
-                this.addPerson(fn, ln, a);  // old school SQL-over-the-connection
+                this.addPerson(fn, ln, a, baseFace, hair, eyes, nose, mouth);  // old school SQL-over-the-connection
                 //this.addPerson1(fn, ln, city);  // Stored procedure
             }
             else

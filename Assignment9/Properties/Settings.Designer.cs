@@ -27,7 +27,7 @@ namespace Assignment9.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\ITProgramming\\Semester 4\\" +
-            "PROG2500\\Assignments\\Assignment9 - Copy\\Database1.mdf\";Integrated Security=True")]
+            "PROG2500\\Assignments\\Assignment9\\Database1.mdf\";Integrated Security=True")]
         public string connString {
             get {
                 return ((string)(this["connString"]));
