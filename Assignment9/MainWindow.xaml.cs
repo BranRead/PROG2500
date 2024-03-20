@@ -25,7 +25,7 @@ using MessageBox = System.Windows.MessageBox;
 
 namespace Assignment9
 
-{ 
+{
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -39,14 +39,14 @@ namespace Assignment9
 
         bool isRunning = false;
 
-       
+
 
         int current_primary_key = 0;
 
 
         int hairPicOption = 1;
         int hairNumOfPhotos = 8;
-        
+
         int eyesPicOption = 1;
         int eyesNumOfPhotos = 8;
 
@@ -58,7 +58,7 @@ namespace Assignment9
 
         List<TabItem> pages = new List<TabItem>();
 
-        
+
 
         HotKey BackHair = new(() => Change_Body_Part("Hair", false), true);
         HotKey ForwardHair = new(() => Change_Body_Part("Hair", true), true);
@@ -78,10 +78,10 @@ namespace Assignment9
 
         public MainWindow()
         {
-            
+
 
             InitializeComponent();
-            
+
             FillDataGrid();
             isRunning = true;
 
@@ -102,7 +102,7 @@ namespace Assignment9
                 exit = Exit
             };
 
-         
+
             pages.Add(faceChanger);
             pages.Add(finish);
 
@@ -111,10 +111,10 @@ namespace Assignment9
 
             InputBindings.Add(new KeyBinding(BackEyes, new KeyGesture(Key.F3, ModifierKeys.None)));
             InputBindings.Add(new KeyBinding(ForwardEyes, new KeyGesture(Key.F4, ModifierKeys.None)));
-            
+
             InputBindings.Add(new KeyBinding(BackNose, new KeyGesture(Key.F5, ModifierKeys.None)));
             InputBindings.Add(new KeyBinding(ForwardNose, new KeyGesture(Key.F6, ModifierKeys.None)));
-            
+
             InputBindings.Add(new KeyBinding(BackMouth, new KeyGesture(Key.F7, ModifierKeys.None)));
             InputBindings.Add(new KeyBinding(ForwardMouth, new KeyGesture(Key.F8, ModifierKeys.None)));
 
@@ -126,7 +126,7 @@ namespace Assignment9
             InputBindings.Add(new KeyBinding(Help, new KeyGesture(Key.I, ModifierKeys.Control)));
 
             InputBindings.Add(new KeyBinding(Exit, new KeyGesture(Key.Q, ModifierKeys.Control)));
-            
+
         }
 
         private void FillDataGrid()
@@ -155,6 +155,33 @@ namespace Assignment9
             }
         }
 
+        private void SearchDatabase(string query)
+        {
+            string CmdString = string.Empty;
+            using (SqlConnection con = new SqlConnection(connString))
+            {
+                CmdString = "SELECT " +
+                    "person.Id, " +
+                    "person.fName, " +
+                    "person.lName, " +
+                    "person.city, " +
+                    "face.baseFace, " +
+                    "face.hair, " +
+                    "face.eyes, " +
+                    "face.nose, " +
+                    "face.mouth " +
+                    "FROM person " +
+                    "INNER JOIN face " +
+                    "ON (person.id = face.personId) " +
+                    "WHERE person.lName = '" + query + "';";
+                SqlCommand cmd = new SqlCommand(CmdString, con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                dt = new DataTable("dataReadOut");
+                sda.Fill(dt);
+                dataReadOut.ItemsSource = dt.DefaultView;
+            }
+        }
+
         // Add a person record with these attributes...SQL INSERT command
         private void addPerson(String fn, String ln, String address, String baseFace, String hair, String eyes, String nose, String mouth)
         {
@@ -172,21 +199,22 @@ namespace Assignment9
                 SqlCommand command = new SqlCommand(cmdText: cmd_Text_Details, connection: conn);
                 command.Connection.Open();
                 command.ExecuteNonQuery();  //does the actual insert statement
-                
+
             }
             catch { System.Windows.MessageBox.Show("DB Add Exception"); }
 
 
             int personId = 0;
-           
+
             String cmd_Select_User = "SELECT Id from person where fName = '" + fn + "' AND lName = '" + ln + "' AND city = '" + address + "';";
             Trace.Write(cmd_Select_User);
             try
             {
                 SqlCommand command = new SqlCommand(cmdText: cmd_Select_User, connection: conn);
-               
-                personId = (int) command.ExecuteScalar();
-            } catch { System.Windows.MessageBox.Show("DB Select Exception"); }
+
+                personId = (int)command.ExecuteScalar();
+            }
+            catch { System.Windows.MessageBox.Show("DB Select Exception"); }
 
 
             String cmd_Text_Face = "INSERT INTO face(personID, baseFace, hair, eyes, nose, mouth)  VALUES('" + personId + "', '" + baseFace + "', '" + hair + "', '" + eyes + "', '" + nose + "', '" + mouth + "');";
@@ -194,7 +222,7 @@ namespace Assignment9
             {
                 // Example of C# named parameters...a good idea for important library calls
                 SqlCommand command = new SqlCommand(cmdText: cmd_Text_Face, connection: conn);
-                
+
                 command.ExecuteNonQuery();  //does the actual insert statement
             }
             catch { System.Windows.MessageBox.Show("DB Add Exception"); }
@@ -209,82 +237,92 @@ namespace Assignment9
 
             if (part == "Hair")
             {
-                Image HairImage = thisWindow.Hair;
-                if (!isForward) 
+                if (!isForward)
                 {
-                    thisEditer.Previous_Image(HairImage, part.ToLower(), ref thisWindow.hairPicOption, thisWindow.hairNumOfPhotos);
+                    
+                    thisEditer.Previous_Image(thisWindow.Hair, thisWindow.HairResult, part.ToLower(), ref thisWindow.hairPicOption, thisWindow.hairNumOfPhotos);
+
                 }
                 else
                 {
-                    thisEditer.Next_Image(HairImage, part.ToLower(), ref thisWindow.hairPicOption, thisWindow.hairNumOfPhotos);
+                    
+                    thisEditer.Next_Image(thisWindow.Hair, thisWindow.HairResult, part.ToLower(), ref thisWindow.hairPicOption, thisWindow.hairNumOfPhotos);
+
                 }
                 Update_Label(part, thisWindow.HairLabel, thisWindow.hairPicOption);
             }
 
-            if(part == "Eyes")
+            if (part == "Eyes")
             {
-                Image EyesImage = thisWindow.Eyes;
                 if (!isForward)
                 {
-                    thisEditer.Previous_Image(EyesImage, part.ToLower(), ref thisWindow.eyesPicOption, thisWindow.eyesNumOfPhotos);
+                    thisEditer.Previous_Image(thisWindow.Eyes, thisWindow.EyesResult, part.ToLower(), ref thisWindow.eyesPicOption, thisWindow.eyesNumOfPhotos);
+
                 }
                 else
                 {
-                    thisEditer.Next_Image(EyesImage, part.ToLower(), ref thisWindow.eyesPicOption, thisWindow.eyesNumOfPhotos);
+
+                    thisEditer.Next_Image(thisWindow.Eyes, thisWindow.EyesResult, part.ToLower(), ref thisWindow.eyesPicOption, thisWindow.eyesNumOfPhotos);
+
                 }
                 Update_Label(part, thisWindow.EyesLabel, thisWindow.eyesPicOption);
             }
-            
-            if(part == "Nose")
+
+            if (part == "Nose")
             {
-                Image NoseImage = thisWindow.Nose;
                 if (!isForward)
                 {
-                    thisEditer.Previous_Image(NoseImage, part.ToLower(), ref thisWindow.nosePicOption, thisWindow.noseNumOfPhotos);
-                } else
-                {
-                    thisEditer.Next_Image(NoseImage, part.ToLower(), ref thisWindow.nosePicOption, thisWindow.noseNumOfPhotos);
+
+                    thisEditer.Previous_Image(thisWindow.Nose, thisWindow.NoseResult, part.ToLower(), ref thisWindow.nosePicOption, thisWindow.noseNumOfPhotos);
+
                 }
-                Update_Label(part, thisWindow.NoseLabel, thisWindow.nosePicOption);
+                else
+                {
+
+                    thisEditer.Next_Image(thisWindow.Nose, thisWindow.NoseResult, part.ToLower(), ref thisWindow.nosePicOption, thisWindow.noseNumOfPhotos);
+
+                    Update_Label(part, thisWindow.NoseLabel, thisWindow.nosePicOption);
+                }
             }
-           
+
             if (part == "Mouth")
             {
-                Image MouthImage = thisWindow.Mouth;
                 if (!isForward)
                 {
-                    thisEditer.Previous_Image(MouthImage, part.ToLower(), ref thisWindow.mouthPicOption, thisWindow.mouthNumOfPhotos);
-                } else
-                {
-                    thisEditer.Next_Image(MouthImage, part.ToLower(), ref thisWindow.mouthPicOption, thisWindow.mouthNumOfPhotos);
+                   thisEditer.Previous_Image(thisWindow.Mouth, thisWindow.MouthResult, part.ToLower(), ref thisWindow.mouthPicOption, thisWindow.mouthNumOfPhotos);
                 }
-                Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthPicOption);
+                else
+                {
+                   thisEditer.Next_Image(thisWindow.Mouth, thisWindow.MouthResult, part.ToLower(), ref thisWindow.mouthPicOption, thisWindow.mouthNumOfPhotos);
+                }
+                Update_Label(part, thisWindow.MouthLabel, thisWindow.mouthPicOption);
             }
         }
+        
 
         public static void Randomize_Face()
         {
             MainWindow thisWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
             Editer thisEditer = thisWindow.editer;
 
-            if(thisWindow.HairCheckbox.IsChecked == true)
+            if (thisWindow.HairCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Hair, "hair", ref thisWindow.hairPicOption, thisWindow.hairNumOfPhotos);
+                thisEditer.Random_Image(thisWindow.Hair, thisWindow.HairResult, "hair", ref thisWindow.hairPicOption, thisWindow.hairNumOfPhotos);
                 Update_Label("Hair", thisWindow.HairLabel, thisWindow.hairPicOption);
             }
             if (thisWindow.EyesCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Eyes, "eyes", ref thisWindow.eyesPicOption, thisWindow.eyesNumOfPhotos);
+                thisEditer.Random_Image(thisWindow.Eyes, thisWindow.EyesResult, "eyes", ref thisWindow.eyesPicOption, thisWindow.eyesNumOfPhotos);
                 Update_Label("Eyes", thisWindow.EyesLabel, thisWindow.eyesPicOption);
             }
             if (thisWindow.NoseCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Nose, "nose", ref thisWindow.nosePicOption, thisWindow.noseNumOfPhotos);
+                thisEditer.Random_Image(thisWindow.Nose, thisWindow.NoseResult, "nose", ref thisWindow.nosePicOption, thisWindow.noseNumOfPhotos);
                 Update_Label("Nose", thisWindow.NoseLabel, thisWindow.nosePicOption);
             }
-            if(thisWindow.MouthCheckbox.IsChecked == true)
+            if (thisWindow.MouthCheckbox.IsChecked == true)
             {
-                thisEditer.Random_Image(thisWindow.Mouth, "mouth", ref thisWindow.mouthPicOption, thisWindow.mouthNumOfPhotos);
+                thisEditer.Random_Image(thisWindow.Mouth, thisWindow.MouthResult, "mouth", ref thisWindow.mouthPicOption, thisWindow.mouthNumOfPhotos);
                 Update_Label("Mouth", thisWindow.MouthLabel, thisWindow.mouthPicOption);
             }
         }
@@ -292,7 +330,7 @@ namespace Assignment9
         public static void Update_Label(string part, TextBlock label, int index)
         {
             label.Text = part + " " + (index);
-        } 
+        }
 
         public static void New_Skin_Tone(string tone)
         {
@@ -334,7 +372,7 @@ namespace Assignment9
             if (fn != "" && ln != "" && a != "")
             {
                 this.addPerson(fn, ln, a, baseFace, hair, eyes, nose, mouth);  // old school SQL-over-the-connection
-                //this.addPerson1(fn, ln, city);  // Stored procedure
+                                                                               //this.addPerson1(fn, ln, city);  // Stored procedure
             }
             else
             {
@@ -348,13 +386,13 @@ namespace Assignment9
         private void Previous_Page(object sender, RoutedEventArgs e)
         {
             int newActivePageIndex = Page_isSelected() - 1;
-            if(newActivePageIndex < 0)
+            if (newActivePageIndex < 0)
             {
                 newActivePageIndex = 0;
             }
 
             pages[newActivePageIndex].IsSelected = true;
-            
+
         }
 
         private void Next_Page(object sender, RoutedEventArgs e)
@@ -368,12 +406,12 @@ namespace Assignment9
             pages[newActivePageIndex].IsSelected = true;
         }
 
-       
+
         private int Page_isSelected()
         {
             int index = 0;
 
-            foreach(TabItem page in pages)
+            foreach (TabItem page in pages)
             {
                 if (page.IsSelected)
                 {
@@ -409,7 +447,7 @@ namespace Assignment9
             editer.Update_Face("mouth", Mouth, mouthPicOption);
             Update_Label("Mouth", MouthLabel, mouthPicOption);
             pages[0].IsSelected = true;
-            
+
         }
 
         private void upPerson(int pkey, String fn, String ln, String city)
@@ -473,7 +511,7 @@ namespace Assignment9
 
         private void dataReadOut_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(dataReadOut.SelectedItem != null && isRunning)
+            if (dataReadOut.SelectedItem != null && isRunning && (dataReadOut.SelectedItem as DataRowView).Row["Id"] != null)
             {
                 // When we get here after deleting a row, we can't get the current row
                 try
@@ -496,7 +534,7 @@ namespace Assignment9
                     citySpace.Text = ":(";
                 }
             }
-            
+
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
@@ -512,10 +550,23 @@ namespace Assignment9
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if(dataReadOut.SelectedItem != null) {
+            if (dataReadOut.SelectedItem != null)
+            {
                 DlPerson(current_primary_key);
             }
 
+            FillDataGrid();
+        }
+
+        private void searchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string searchQuery = searchBar.Text;
+
+            SearchDatabase(searchQuery);
+        }
+
+        private void defaultView_Click(object sender, RoutedEventArgs e)
+        {
             FillDataGrid();
         }
     }

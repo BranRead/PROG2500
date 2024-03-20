@@ -23,7 +23,7 @@ namespace Assignment9
 {
     internal class Editer
     {
-        public void Previous_Image(Image image, string part, ref int index, int numOfPhotos)
+        public void Previous_Image(Image image, Image imageResult, string part, ref int index, int numOfPhotos)
         {
             index--;
             if (index < 1)
@@ -32,10 +32,11 @@ namespace Assignment9
             }
 
             image.Source = new BitmapImage(new Uri("/images/" + part + index + ".png", UriKind.Relative));
+            imageResult.Source = new BitmapImage(new Uri("/images/" + part + index + ".png", UriKind.Relative));
 
         }
 
-        public void Next_Image(Image image, string part, ref int index, int numOfPhotos)
+        public void Next_Image(Image image, Image imageResult, string part, ref int index, int numOfPhotos)
         {
             index++;
             if (index > numOfPhotos)
@@ -44,14 +45,15 @@ namespace Assignment9
             }
 
             image.Source = new BitmapImage(new Uri("/images/" + part + index + ".png", UriKind.Relative));
+            imageResult.Source = new BitmapImage(new Uri("/images/" + part + index + ".png", UriKind.Relative));
         }
 
-        public void Random_Image(Image image, string part, ref int index, int numOfPhotos)
+        public void Random_Image(Image image, Image imageResult, string part, ref int index, int numOfPhotos)
         {
             Random rng = new Random();
             index = rng.Next(1, numOfPhotos);
             image.Source = new BitmapImage(new Uri("/images/" + part + index + ".png", UriKind.Relative));
-
+            imageResult.Source = new BitmapImage(new Uri("/images/" + part + index + ".png", UriKind.Relative));
         }
 
         public void Set_Base_Face(string part, Image image) 
