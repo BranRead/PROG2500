@@ -21,6 +21,7 @@ using System.IO;
 using Assignment5;
 using System.Data;
 using System.Data.SqlClient;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Assignment9
 
@@ -35,6 +36,10 @@ namespace Assignment9
         string connString = Utility.GetConnectionString();
 
         DataTable dt;
+
+        bool isRunning = false;
+
+       
 
         int current_primary_key = 0;
 
@@ -53,7 +58,7 @@ namespace Assignment9
 
         List<TabItem> pages = new List<TabItem>();
 
-        string fNameUserEnter;
+        
 
         HotKey BackHair = new(() => Change_Body_Part("Hair", false), true);
         HotKey ForwardHair = new(() => Change_Body_Part("Hair", true), true);
@@ -78,6 +83,7 @@ namespace Assignment9
             InitializeComponent();
             
             FillDataGrid();
+            isRunning = true;
 
             DataContext = new
             {
@@ -96,7 +102,7 @@ namespace Assignment9
                 exit = Exit
             };
 
-            pages.Add(basicInfo);
+         
             pages.Add(faceChanger);
             pages.Add(finish);
 
@@ -128,7 +134,9 @@ namespace Assignment9
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(connString))
             {
-                CmdString = "SELECT person.fName, " +
+                CmdString = "SELECT " +
+                    "person.Id, " +
+                    "person.fName, " +
                     "person.lName, " +
                     "person.city, " +
                     "face.baseFace, " +
@@ -310,49 +318,12 @@ namespace Assignment9
             System.Windows.Forms.Help.ShowHelp(null, "FaceChanger.chm", Nav_by_Topic, "About.htm");
         }
 
-        private void Tab(object sender, RoutedEventArgs e)
-        {
-            Update_Output();
-        }
-
-        private void Update_Output()
-        {
-            fNameUserEnter = fNameInput.Text;
-            if (fNameUserEnter == null || fNameUserEnter == "")
-            {
-                fNameUserEnter = "--Enter First Name--";
-            }
-
-            string lNameUserEnter = lNameInput.Text;
-            if (lNameUserEnter == null || lNameUserEnter == "")
-            {
-                lNameUserEnter = "--Enter Last Name--";
-            }
-
-            string addressUserEnter = addressInput.Text;
-            if (addressUserEnter == null || addressUserEnter == "")
-            {
-                addressUserEnter = "--Enter Address--";
-            }
-
-            
-
-            fName.Text = "First name: " + fNameUserEnter;
-            lName.Text = "Last name: " + lNameUserEnter;
-            address.Text = "Address: " + addressUserEnter;
-            
-
-            editer.Update_Face("hair", HairResult, hairPicOption);
-            editer.Update_Face("eyes", EyesResult, eyesPicOption);
-            editer.Update_Face("Nose", NoseResult, nosePicOption);
-            editer.Update_Face("Mouth", MouthResult, mouthPicOption);
-        }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            String fn = fNameInput.Text;
-            String ln = lNameInput.Text;
-            String a = addressInput.Text;
+            String fn = fNameSpace.Text;
+            String ln = lNameSpace.Text;
+            String a = citySpace.Text;
             String baseFace = "Base Face 1";
             String hair = HairLabel.Text;
             String eyes = EyesLabel.Text;
@@ -383,6 +354,7 @@ namespace Assignment9
             }
 
             pages[newActivePageIndex].IsSelected = true;
+            
         }
 
         private void Next_Page(object sender, RoutedEventArgs e)
@@ -391,11 +363,6 @@ namespace Assignment9
             if (newActivePageIndex >= pages.Count)
             {
                 newActivePageIndex = pages.Count - 1;
-            }
-
-            if(newActivePageIndex == pages.Count - 1)
-            {
-                Update_Output();
             }
 
             pages[newActivePageIndex].IsSelected = true;
@@ -420,29 +387,136 @@ namespace Assignment9
 
         private void clearButton_Click(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "character.txt")))
+
+
+
+            fNameSpace.Text = string.Empty;
+            lNameSpace.Text = string.Empty;
+            citySpace.Text = string.Empty;
+            hairPicOption = 1;
+            eyesPicOption = 1;
+            nosePicOption = 1;
+            mouthPicOption = 1;
+            editer.Update_Face("hair", Hair, hairPicOption);
+            Update_Label("Hair", HairLabel, hairPicOption);
+
+            editer.Update_Face("eyes", Eyes, eyesPicOption);
+            Update_Label("Eyes", EyesLabel, eyesPicOption);
+
+            editer.Update_Face("nose", Nose, nosePicOption);
+            Update_Label("Nose", NoseLabel, nosePicOption);
+
+            editer.Update_Face("mouth", Mouth, mouthPicOption);
+            Update_Label("Mouth", MouthLabel, mouthPicOption);
+            pages[0].IsSelected = true;
+            
+        }
+
+        private void upPerson(int pkey, String fn, String ln, String city)
+        {
+            // Old school connection
+            SqlConnection conn = new SqlConnection(connString);
+
+            // old school insert statement...note Trace output should show format of SQL Insert command
+            String cmd_Text =
+                "UPDATE Person SET fname = '" + fn +
+                "', lname = '" + ln +
+                "', city = '" + city +
+                "'  WHERE Id = " + pkey + ";";
+            Trace.Write(cmd_Text);
+
+            // DB insert in try-catch
+            try
             {
-                File.Delete(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "character.txt"));
-                fNameInput.Clear();
-                lNameInput.Clear();
-                addressInput.Clear();
-                hairPicOption = 1;
-                eyesPicOption = 1;
-                nosePicOption = 1;
-                mouthPicOption = 1;
-                editer.Update_Face("hair", Hair, hairPicOption);
-                Update_Label("Hair", HairLabel, hairPicOption);
-
-                editer.Update_Face("eyes", Eyes, eyesPicOption);
-                Update_Label("Eyes", EyesLabel, eyesPicOption);
-
-                editer.Update_Face("nose", Nose, nosePicOption);
-                Update_Label("Nose", NoseLabel, nosePicOption);
-
-                editer.Update_Face("mouth", Mouth, mouthPicOption);
-                Update_Label("Mouth", MouthLabel, mouthPicOption);
-                pages[0].IsSelected = true;
+                // Example of C# named parameters...a good idea for important library calls
+                SqlCommand command = new SqlCommand(cmdText: cmd_Text, connection: conn);
+                command.Connection.Open();
+                command.ExecuteNonQuery();  //does the actual insert statement
             }
+            catch { MessageBox.Show("DB Update Exception"); }
+            finally { conn.Close(); }
+
+        }
+
+        private void DlPerson(int pkey)
+        {
+            // Old school connection
+            SqlConnection conn = new SqlConnection(connString);
+
+            // old school insert statement...note Trace output should show format of SQL Insert command
+            String cmd_Text = "DELETE FROM face WHERE personId = " + pkey + ";";
+            Trace.Write(cmd_Text);
+
+            // DB insert in try-catch
+            try
+            {
+                // Example of C# named parameters...a good idea for important library calls
+                SqlCommand command = new SqlCommand(cmdText: cmd_Text, connection: conn);
+                command.Connection.Open();
+                command.ExecuteNonQuery();  //does the actual insert statement
+            }
+            catch { MessageBox.Show("DB Delete Exception Face"); }
+
+            String cmd_Delete_Person = "DELETE FROM person WHERE Id = " + pkey + ";";
+            Trace.Write(cmd_Delete_Person);
+
+            // DB insert in try-catch
+            try
+            {
+                // Example of C# named parameters...a good idea for important library calls
+                SqlCommand command = new SqlCommand(cmdText: cmd_Delete_Person, connection: conn);
+                command.ExecuteNonQuery();  //does the actual insert statement
+            }
+            catch { MessageBox.Show("DB Delete Exception Person"); }
+            finally { conn.Close(); }
+        }
+
+        private void dataReadOut_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(dataReadOut.SelectedItem != null && isRunning)
+            {
+                // When we get here after deleting a row, we can't get the current row
+                try
+                {
+                    // fetch the columns from the selected row
+                    current_primary_key = (int)(dataReadOut.SelectedItem as DataRowView).Row["Id"];
+                    fNameSpace.Text = (string)(dataReadOut.SelectedItem as DataRowView).Row["fName"];
+                    lNameSpace.Text = (string)(dataReadOut.SelectedItem as DataRowView).Row["lName"];
+                    citySpace.Text = (string)(dataReadOut.SelectedItem as DataRowView).Row["city"];
+
+                    Trace.WriteLine("Selected = " + current_primary_key + fNameSpace.Text + lNameSpace.Text);
+                }
+                catch
+                {
+                    // If deleting row, get exception trying to get it's data
+                    Trace.WriteLine("No Row (deleted?)...default record used");
+                    current_primary_key = -1;
+                    fNameSpace.Text = ":(";
+                    lNameSpace.Text = ":(";
+                    citySpace.Text = ":(";
+                }
+            }
+            
+        }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+            if (current_primary_key > -1)
+            {
+                upPerson(current_primary_key, fNameSpace.Text, lNameSpace.Text, citySpace.Text);
+
+                // Update changes to the grid
+                FillDataGrid();
+            }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataReadOut.SelectedItem != null) {
+                DlPerson(current_primary_key);
+            }
+
+            FillDataGrid();
         }
     }
 }

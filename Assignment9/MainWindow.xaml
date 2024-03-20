@@ -33,27 +33,6 @@
 
         <Border Background="#FFABABAB" BorderBrush="Black" BorderThickness="2,2,2,2" Margin="130,64,130,10"/>
         <TabControl Background="#FF9C9C9C">
-            <TabItem Name="basicInfo" Header="TabItem" Margin="400,34,-400,-34" RenderTransformOrigin="0.199,-7.458" Width="100" Height="34">
-                <TabItem.Background>
-                    <LinearGradientBrush EndPoint="0,1">
-                        <GradientStop Color="#FFF0F0F0"/>
-                        <GradientStop Color="#FF9C9C9C" Offset="1"/>
-                    </LinearGradientBrush>
-                </TabItem.Background>
-                <Grid Background="#FF9C9C9C" HorizontalAlignment="Center" Width="794" Height="401">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="0*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="fNameInput" HorizontalAlignment="Left" Margin="373,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="16"/>
-                    <TextBox x:Name="lNameInput" HorizontalAlignment="Left" Margin="373,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="16"/>
-                    <TextBox x:Name="addressInput" HorizontalAlignment="Left" Margin="373,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="17"/>
-                    <Label Content="First Name" HorizontalAlignment="Left" Margin="295,96,0,0" VerticalAlignment="Top" Height="24" Width="75"/>
-                    <Label Content="Last Name" HorizontalAlignment="Left" Margin="295,131,0,0" VerticalAlignment="Top" Height="24" Width="73"/>
-                    <Label Content="Address" HorizontalAlignment="Left" Margin="295,166,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
-                    <Label Content="Basic Details" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="392" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Foreground="Black"/>
-                </Grid>
-            </TabItem>
             <TabItem Name="faceChanger" Header="TabItem" Margin="400,34,-400,-34" RenderTransformOrigin="0.963,5.261" Height="34" Width="100">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1">
@@ -99,21 +78,25 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Name="finish" Header="TabItem" Margin="400,34,-400,-34" RenderTransformOrigin="0.963,5.261" MouseLeftButtonUp="Tab" Height="34" Width="100" HorizontalAlignment="Left">
+            <TabItem Name="finish" Header="TabItem" Margin="400,34,-400,-34" RenderTransformOrigin="0.963,5.261" Height="34" Width="100" HorizontalAlignment="Left">
                 <TabItem.Background>
                     <LinearGradientBrush EndPoint="0,1">
                         <GradientStop Color="#FFF0F0F0"/>
                         <GradientStop Color="#FF9C9C9C" Offset="1"/>
                     </LinearGradientBrush>
                 </TabItem.Background>
-                <Grid Background="#FF9C9C9C" Height="340">
+                <Grid Background="#FF9C9C9C" Height="341" Margin="0,0,17,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="257*"/>
-                        <ColumnDefinition Width="537*"/>
+                        <ColumnDefinition Width="251*"/>
+                        <ColumnDefinition Width="209*"/>
+                        <ColumnDefinition Width="72*"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="27*"/>
+                        <ColumnDefinition Width="194*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="fName" HorizontalAlignment="Left" Margin="31,122,0,0" TextWrapping="Wrap" Text="First name:" VerticalAlignment="Top" Width="218" Grid.Column="1"/>
-                    <TextBlock x:Name="lName" HorizontalAlignment="Left" Margin="31,141,0,0" TextWrapping="Wrap" Text="Last name:" VerticalAlignment="Top" Width="218" Grid.Column="1"/>
-                    <TextBlock x:Name="address" HorizontalAlignment="Left" Margin="31,160,0,0" TextWrapping="Wrap" Text="Address:" VerticalAlignment="Top" Width="218" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+                    <TextBlock x:Name="fName" HorizontalAlignment="Left" Margin="31,119,0,0" TextWrapping="Wrap" Text="First name:" VerticalAlignment="Top" Width="68" Grid.Column="1" Height="17"/>
+                    <TextBlock x:Name="lName" HorizontalAlignment="Left" Margin="31,141,0,0" TextWrapping="Wrap" Text="Last name:" VerticalAlignment="Top" Width="68" Grid.Column="1"/>
+                    <TextBlock x:Name="address" HorizontalAlignment="Left" Margin="31,160,0,0" TextWrapping="Wrap" Text="Address:" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Height="14">
                         <TextBlock.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -133,10 +116,15 @@
                         RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Grid.ColumnSpan="2"/>
                     <Image x:Name="MouthResult" HorizontalAlignment="Left" Height="288" Margin="10,18,0,0" VerticalAlignment="Top" Width="288" Source="/images/mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                         RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Grid.ColumnSpan="2"/>
-                    <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="300,286,0,0" VerticalAlignment="Top" Click="saveButton_Click" Height="20" Width="40" Grid.Column="1"/>
-                    <Button x:Name="clearButton" Content="Clear Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Click="clearButton_Click" Height="20" Width="112" Margin="349,312,0,0" Grid.Column="1"/>
-                    <Label Content="Your Character" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Foreground="Black" Margin="0,-10,397,310" Grid.ColumnSpan="2"/>
-                    <DataGrid Name="dataReadOut" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="155,71,0,114"/>
+                    <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="19,286,0,0" VerticalAlignment="Top" Click="saveButton_Click" Height="20" Width="40" Grid.Column="3" Grid.ColumnSpan="3"/>
+                    <Button x:Name="clearButton" Content="Clear Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Click="clearButton_Click" Height="20" Width="112" Margin="17,312,0,0" Grid.Column="5"/>
+                    <Label Content="Your Character" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Foreground="Black" Margin="0,-10,80,310" Grid.ColumnSpan="2"/>
+                    <DataGrid Name="dataReadOut" Grid.Column="5" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="28,71,10,114" SelectionChanged="dataReadOut_SelectionChanged" SelectedIndex="4"/>
+                    <TextBox Name="fNameSpace" Grid.Column="1" HorizontalAlignment="Left" Margin="118,119,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                    <TextBox Name="lNameSpace" Grid.Column="1" HorizontalAlignment="Left" Margin="118,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                    <TextBox Name="citySpace" Grid.Column="1" HorizontalAlignment="Left" Margin="118,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
+                    <Button x:Name="Update" Grid.Column="5" Content="Update" HorizontalAlignment="Left" Margin="55,272,0,0" VerticalAlignment="Top" Click="Update_Click"/>
+                    <Button x:Name="Delete" Grid.Column="5" Content="Delete" HorizontalAlignment="Left" Margin="123,277,0,0" VerticalAlignment="Top" Click="Delete_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>
