@@ -92,7 +92,7 @@ namespace M01_First_WPF_Proj
                             if (!currentList.Contains(q))
                             {
                                 currentList.Add(q);  // add if not already in current
-                                straggleList.Add(q); // 
+                                straggleList.Add(q);// 
                             }
 
                         }
@@ -100,6 +100,7 @@ namespace M01_First_WPF_Proj
                         {
                             Console.WriteLine("TOO FAR p=" + p.ToString() + " to q=" + q.ToString());
                         }
+                        
                     }
                 }
             }
@@ -107,7 +108,7 @@ namespace M01_First_WPF_Proj
             // remove these points from workingList
             // eventually all points are removed from workingList
             foreach (Point q in currentList) {
-                if (currentList.Contains(q)) { 
+                if (workingList.Contains(q)) { 
                     workingList.Remove(q);
                 }
             }
