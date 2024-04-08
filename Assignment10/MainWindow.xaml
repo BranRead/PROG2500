@@ -136,8 +136,10 @@
                     <Label Grid.Column="10" Content="Search" HorizontalAlignment="Left" Margin="4,41,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
                     <Button x:Name="searchBtn" Grid.Column="12" Content="Search" HorizontalAlignment="Left" Margin="91,71,0,0" VerticalAlignment="Top" Click="searchBtn_Click"/>
                     <Button x:Name="defaultView" Grid.Column="12" Content="See all" HorizontalAlignment="Left" Margin="29,293,0,0" VerticalAlignment="Top" Click="defaultView_Click" Width="60"/>
-                    <ComboBox Text="--Select One--" x:Name="OccupationDropdown" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="67,109,0,0" VerticalAlignment="Top" Width="120"/>
-                    <ComboBox Text="--Select One--" x:Name="HobbyDropdown" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="66,152,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox x:Name="OccupationDropdown" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" Margin="89,109,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox x:Name="HobbyDropdown" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" Margin="89,150,0,0" VerticalAlignment="Top" Width="120"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="15,112,0,0" TextWrapping="Wrap" Text="Occupation:" VerticalAlignment="Top"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="41,150,0,0" TextWrapping="Wrap" Text="Hobby:" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>

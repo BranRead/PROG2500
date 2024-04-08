@@ -81,6 +81,10 @@ namespace Assignment9
 
 
             InitializeComponent();
+            OccupationDropdown.Items.Insert(0, "--Select One--");
+            OccupationDropdown.SelectedIndex = 0;
+            HobbyDropdown.Items.Insert(0, "--Select One--");
+            HobbyDropdown.SelectedIndex = 0;
 
             FillOccupation();
             FillHobby();
@@ -215,18 +219,24 @@ namespace Assignment9
             using (SqlConnection con = new SqlConnection(connString))
             {
                 CmdString = "SELECT " +
-                    "person.Id, " +
-                    "person.fName, " +
-                    "person.lName, " +
-                    "person.city, " +
-                    "face.baseFace, " +
-                    "face.hair, " +
-                    "face.eyes, " +
-                    "face.nose, " +
-                    "face.mouth " +
+                    "person.Id as 'Person ID'," +
+                    "person.fName as 'First Name'," +
+                    "person.lName as 'Last Name'," +
+                    "person.city as 'City'," +
+                    "face.baseFace as 'Base Face Option'," +
+                    "face.hair as 'Hair Option'," +
+                    "face.eyes as 'Eyes Option'," +
+                    "face.nose as 'Nose Option'," +
+                    "face.mouth as 'Mouth Option'," +
+                    "occupation.name as 'Occupation'," +
+                    "hobby.name as 'Hobby'" +
                     "FROM person " +
                     "INNER JOIN face " +
-                    "ON (person.id = face.personId);";
+                    "ON (person.id = face.personId) " +
+                    "INNER JOIN occupation " +
+                    "ON (person.occupationId = occupation.Id) " +
+                    "INNER JOIN hobby " +
+                    "ON (person.hobbyId = hobby.Id);";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 dt = new DataTable("dataReadOut");
@@ -241,19 +251,25 @@ namespace Assignment9
             using (SqlConnection con = new SqlConnection(connString))
             {
                 CmdString = "SELECT " +
-                    "person.Id, " +
-                    "person.fName, " +
-                    "person.lName, " +
-                    "person.city, " +
-                    "face.baseFace, " +
-                    "face.hair, " +
-                    "face.eyes, " +
-                    "face.nose, " +
-                    "face.mouth " +
+                    "person.Id as 'Person ID'," +
+                    "person.fName as 'First Name'," +
+                    "person.lName as 'Last Name'," +
+                    "person.city as 'City'," +
+                    "face.baseFace as 'Base Face Option'," +
+                    "face.hair as 'Hair Option'," +
+                    "face.eyes as 'Eyes Option'," +
+                    "face.nose as 'Nose Option'," +
+                    "face.mouth as 'Mouth Option'," +
+                    "occupation.name as 'Occupation'," +
+                    "hobby.name as 'Hobby'" +
                     "FROM person " +
                     "INNER JOIN face " +
                     "ON (person.id = face.personId) " +
-                    "WHERE person.lName = '" + query + "';";
+                    "INNER JOIN occupation " +
+                    "ON (person.occupationId = occupation.Id) " +
+                    "INNER JOIN hobby " +
+                    "ON (person.hobbyId = hobby.Id) " +
+                "WHERE person.lName = '" + query + "';";
                 SqlCommand cmd = new SqlCommand(CmdString, con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 dt = new DataTable("dataReadOut");
@@ -263,13 +279,13 @@ namespace Assignment9
         }
 
         // Add a person record with these attributes...SQL INSERT command
-        private void addPerson(String fn, String ln, String address, String baseFace, String hair, String eyes, String nose, String mouth)
+        private void addPerson(String fn, String ln, String address, int occupation, int hobby, String baseFace, String hair, String eyes, String nose, String mouth)
         {
             // Old school connection
             SqlConnection conn = new SqlConnection(connString);
 
             // old school insert statement...note Trace output should show format of SQL Insert command
-            String cmd_Text_Details = "INSERT INTO person(fName, lName, city)  VALUES('" + fn + "', '" + ln + "', '" + address + "');";
+            String cmd_Text_Details = "INSERT INTO person(fName, lName, city, occupationId, hobbyId)  VALUES('" + fn + "', '" + ln + "', '" + address + "', '" + occupation + "', '" + hobby + "');";
             Trace.Write(cmd_Text_Details);
 
             // DB insert in try-catch
@@ -306,6 +322,7 @@ namespace Assignment9
                 command.ExecuteNonQuery();  //does the actual insert statement
             }
             catch { System.Windows.MessageBox.Show("DB Add Exception"); }
+
             finally { conn.Close(); }
 
         }
@@ -442,6 +459,8 @@ namespace Assignment9
             String fn = fNameSpace.Text;
             String ln = lNameSpace.Text;
             String a = citySpace.Text;
+            int occupation = OccupationDropdown.SelectedIndex;
+            int hobby = HobbyDropdown.SelectedIndex;
             String baseFace = "Base Face 1";
             String hair = HairLabel.Text;
             String eyes = EyesLabel.Text;
@@ -449,10 +468,9 @@ namespace Assignment9
             String mouth = MouthLabel.Text;
 
             // Add this record if values not empty
-            if (fn != "" && ln != "" && a != "")
+            if (fn != "" && ln != "" && a != "" && occupation > 0 && hobby > 0)
             {
-                this.addPerson(fn, ln, a, baseFace, hair, eyes, nose, mouth);  // old school SQL-over-the-connection
-                                                                               //this.addPerson1(fn, ln, city);  // Stored procedure
+                this.addPerson(fn, ln, a, occupation, hobby, baseFace, hair, eyes, nose, mouth);  // old school SQL-over-the-connection                                                            //this.addPerson1(fn, ln, city);  // Stored procedure
             }
             else
             {
@@ -508,6 +526,8 @@ namespace Assignment9
             fNameSpace.Text = string.Empty;
             lNameSpace.Text = string.Empty;
             citySpace.Text = string.Empty;
+            OccupationDropdown.SelectedIndex = 0;
+            HobbyDropdown.SelectedIndex = 0;
             hairPicOption = 1;
             eyesPicOption = 1;
             nosePicOption = 1;
@@ -527,7 +547,7 @@ namespace Assignment9
 
         }
 
-        private void upPerson(int pkey, String fn, String ln, String city)
+        private void upPerson(int pkey, String fn, String ln, String city, int occupation, int hobby)
         {
             // Old school connection
             SqlConnection conn = new SqlConnection(connString);
@@ -537,6 +557,8 @@ namespace Assignment9
                 "UPDATE Person SET fname = '" + fn +
                 "', lname = '" + ln +
                 "', city = '" + city +
+                "', occupationId = '" + occupation +
+                "', hobbyId = '" + hobby +
                 "'  WHERE Id = " + pkey + ";";
             Trace.Write(cmd_Text);
 
@@ -588,16 +610,18 @@ namespace Assignment9
 
         private void dataReadOut_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dataReadOut.SelectedItem != null && isRunning && (dataReadOut.SelectedItem as DataRowView).Row["Id"] != null)
+            if (dataReadOut.SelectedItem != null && isRunning && (dataReadOut.SelectedItem as DataRowView).Row["Person ID"] != null)
             {
                 // When we get here after deleting a row, we can't get the current row
                 try
                 {
                     // fetch the columns from the selected row
-                    current_primary_key = (int)(dataReadOut.SelectedItem as DataRowView).Row["Id"];
-                    fNameSpace.Text = (string)(dataReadOut.SelectedItem as DataRowView).Row["fName"];
-                    lNameSpace.Text = (string)(dataReadOut.SelectedItem as DataRowView).Row["lName"];
-                    citySpace.Text = (string)(dataReadOut.SelectedItem as DataRowView).Row["city"];
+                    current_primary_key = (int)(dataReadOut.SelectedItem as DataRowView).Row["Person ID"];
+                    fNameSpace.Text = (string)(dataReadOut.SelectedItem as DataRowView).Row["First Name"];
+                    lNameSpace.Text = (string)(dataReadOut.SelectedItem as DataRowView).Row["Last Name"];
+                    citySpace.Text = (string)(dataReadOut.SelectedItem as DataRowView).Row["City"];
+                    OccupationDropdown.SelectedIndex = OccupationDropdown.Items.IndexOf((string)(dataReadOut.SelectedItem as DataRowView).Row["Occupation"]);
+                    HobbyDropdown.SelectedIndex = HobbyDropdown.Items.IndexOf((string)(dataReadOut.SelectedItem as DataRowView).Row["Hobby"]);
 
                     Trace.WriteLine("Selected = " + current_primary_key + fNameSpace.Text + lNameSpace.Text);
                 }
@@ -618,7 +642,7 @@ namespace Assignment9
         {
             if (current_primary_key > -1)
             {
-                upPerson(current_primary_key, fNameSpace.Text, lNameSpace.Text, citySpace.Text);
+                upPerson(current_primary_key, fNameSpace.Text, lNameSpace.Text, citySpace.Text, OccupationDropdown.SelectedIndex, HobbyDropdown.SelectedIndex);
 
                 // Update changes to the grid
                 FillDataGrid();
