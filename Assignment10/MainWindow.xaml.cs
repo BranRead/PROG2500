@@ -41,7 +41,7 @@ namespace Assignment9
 
 
 
-        int current_primary_key = 0;
+        int current_primary_key = -1;
 
 
         int hairPicOption = 1;
@@ -279,51 +279,78 @@ namespace Assignment9
         }
 
         // Add a person record with these attributes...SQL INSERT command
-        private void addPerson(String fn, String ln, String address, int occupation, int hobby, String baseFace, String hair, String eyes, String nose, String mouth)
+        private void addPerson(String fn, String ln, String address, int occupation, int hobby, int baseFace, int hair, int eyes, int nose, int mouth)
         {
             // Old school connection
             SqlConnection conn = new SqlConnection(connString);
-
-            // old school insert statement...note Trace output should show format of SQL Insert command
-            String cmd_Text_Details = "INSERT INTO person(fName, lName, city, occupationId, hobbyId)  VALUES('" + fn + "', '" + ln + "', '" + address + "', '" + occupation + "', '" + hobby + "');";
-            Trace.Write(cmd_Text_Details);
-
-            // DB insert in try-catch
-            try
-            {
-                // Example of C# named parameters...a good idea for important library calls
-                SqlCommand command = new SqlCommand(cmdText: cmd_Text_Details, connection: conn);
-                command.Connection.Open();
-                command.ExecuteNonQuery();  //does the actual insert statement
-
-            }
-            catch { System.Windows.MessageBox.Show("DB Add Exception"); }
-
-
-            int personId = 0;
-
+            int personExistId = 0;
             String cmd_Select_User = "SELECT Id from person where fName = '" + fn + "' AND lName = '" + ln + "' AND city = '" + address + "';";
             Trace.Write(cmd_Select_User);
             try
             {
                 SqlCommand command = new SqlCommand(cmdText: cmd_Select_User, connection: conn);
-
-                personId = (int)command.ExecuteScalar();
+                command.Connection.Open();
+                if(command.ExecuteScalar() != null)
+                {
+                    personExistId = (int)command.ExecuteScalar();
+                }
             }
             catch { System.Windows.MessageBox.Show("DB Select Exception"); }
 
-
-            String cmd_Text_Face = "INSERT INTO face(personID, baseFace, hair, eyes, nose, mouth)  VALUES('" + personId + "', '" + baseFace + "', '" + hair + "', '" + eyes + "', '" + nose + "', '" + mouth + "');";
-            try
+            if(personExistId == 0)
             {
-                // Example of C# named parameters...a good idea for important library calls
-                SqlCommand command = new SqlCommand(cmdText: cmd_Text_Face, connection: conn);
+                // old school insert statement...note Trace output should show format of SQL Insert command
+                String cmd_Text_Details = "INSERT INTO person(fName, lName, city, occupationId, hobbyId)  VALUES('" + fn + "', '" + ln + "', '" + address + "', '" + occupation + "', '" + hobby + "');";
+                Trace.Write(cmd_Text_Details);
 
-                command.ExecuteNonQuery();  //does the actual insert statement
+                // DB insert in try-catch
+                try
+                {
+                    // Example of C# named parameters...a good idea for important library calls
+                    SqlCommand command = new SqlCommand(cmdText: cmd_Text_Details, connection: conn);
+                    command.ExecuteNonQuery();  //does the actual insert statement
+
+                }
+                catch { 
+                    System.Windows.MessageBox.Show("DB Add Exception");
+                    conn.Close();
+                }
+
+
+                int personId = 0;
+
+                cmd_Select_User = "SELECT Id from person where fName = '" + fn + "' AND lName = '" + ln + "' AND city = '" + address + "';";
+                Trace.Write(cmd_Select_User);
+                try
+                {
+                    SqlCommand command = new SqlCommand(cmdText: cmd_Select_User, connection: conn);
+
+                    personId = (int)command.ExecuteScalar();
+                }
+                catch { System.Windows.MessageBox.Show("DB Select Exception");
+                    conn.Close();
+                }
+
+
+                String cmd_Text_Face = "INSERT INTO face(personID, baseFace, hair, eyes, nose, mouth)  VALUES('" + personId + "', " + baseFace + ", " + hair + ", " + eyes + ", " + nose + ", " + mouth + ");";
+                try
+                {
+                    // Example of C# named parameters...a good idea for important library calls
+                    SqlCommand command = new SqlCommand(cmdText: cmd_Text_Face, connection: conn);
+
+                    command.ExecuteNonQuery();  //does the actual insert statement
+                }
+                catch { System.Windows.MessageBox.Show("DB Add Exception");
+                    conn.Close();
+                }
+
+            }  else
+            {
+                System.Windows.MessageBox.Show("User already exists. Please enter a differe first name, last name or city");
             }
-            catch { System.Windows.MessageBox.Show("DB Add Exception"); }
+            
 
-            finally { conn.Close(); }
+            conn.Close();
 
         }
 
@@ -461,11 +488,11 @@ namespace Assignment9
             String a = citySpace.Text;
             int occupation = OccupationDropdown.SelectedIndex;
             int hobby = HobbyDropdown.SelectedIndex;
-            String baseFace = "Base Face 1";
-            String hair = HairLabel.Text;
-            String eyes = EyesLabel.Text;
-            String nose = NoseLabel.Text;
-            String mouth = MouthLabel.Text;
+            int baseFace = 1;
+            int hair = hairPicOption;
+            int eyes = eyesPicOption;
+            int nose = nosePicOption;
+            int mouth = mouthPicOption;
 
             // Add this record if values not empty
             if (fn != "" && ln != "" && a != "" && occupation > 0 && hobby > 0)
@@ -523,6 +550,7 @@ namespace Assignment9
 
         private void clearButton_Click(object sender, RoutedEventArgs e)
         {
+            current_primary_key = -1;
             fNameSpace.Text = string.Empty;
             lNameSpace.Text = string.Empty;
             citySpace.Text = string.Empty;
@@ -547,8 +575,9 @@ namespace Assignment9
 
         }
 
-        private void upPerson(int pkey, String fn, String ln, String city, int occupation, int hobby)
+        private void upPerson(int pkey, String fn, String ln, String city, int occupation, int hobby, int baseFace, int hair, int eyes, int nose, int mouth)
         {
+            System.Windows.MessageBox.Show("" + hairPicOption);
             // Old school connection
             SqlConnection conn = new SqlConnection(connString);
 
@@ -571,6 +600,25 @@ namespace Assignment9
                 command.ExecuteNonQuery();  //does the actual insert statement
             }
             catch { MessageBox.Show("DB Update Exception"); }
+
+            cmd_Text =
+                "UPDATE face SET baseFace = " + baseFace +
+                ", hair = " + hair +
+                ", eyes = " + eyes +
+                ", nose = " + nose +
+                ", mouth = " + mouth +
+                "  WHERE personId = " + pkey + ";";
+            Trace.Write(cmd_Text);
+
+            // DB insert in try-catch
+            try
+            {
+                // Example of C# named parameters...a good idea for important library calls
+                SqlCommand command = new SqlCommand(cmdText: cmd_Text, connection: conn);
+                command.ExecuteNonQuery();  //does the actual insert statement
+            }
+            catch (Exception e) { MessageBox.Show("DB Update Exception" + e); }
+
             finally { conn.Close(); }
 
         }
@@ -623,6 +671,22 @@ namespace Assignment9
                     OccupationDropdown.SelectedIndex = OccupationDropdown.Items.IndexOf((string)(dataReadOut.SelectedItem as DataRowView).Row["Occupation"]);
                     HobbyDropdown.SelectedIndex = HobbyDropdown.Items.IndexOf((string)(dataReadOut.SelectedItem as DataRowView).Row["Hobby"]);
 
+                    editer.Update_Face("hair", HairResult, (int)(dataReadOut.SelectedItem as DataRowView).Row["Hair Option"]);
+                    editer.Update_Face("eyes", EyesResult, (int)(dataReadOut.SelectedItem as DataRowView).Row["Eyes Option"]);
+                    editer.Update_Face("nose", NoseResult, (int)(dataReadOut.SelectedItem as DataRowView).Row["Nose Option"]);
+                    editer.Update_Face("mouth", MouthResult, (int)(dataReadOut.SelectedItem as DataRowView).Row["Mouth Option"]);
+
+                    editer.Update_Face("hair", Hair, (int)(dataReadOut.SelectedItem as DataRowView).Row["Hair Option"]);
+                    editer.Update_Face("eyes", Eyes, (int)(dataReadOut.SelectedItem as DataRowView).Row["Eyes Option"]);
+                    editer.Update_Face("nose", Nose, (int)(dataReadOut.SelectedItem as DataRowView).Row["Nose Option"]);
+                    editer.Update_Face("mouth", Mouth, (int)(dataReadOut.SelectedItem as DataRowView).Row["Mouth Option"]);
+
+                    hairPicOption = (int)(dataReadOut.SelectedItem as DataRowView).Row["Hair Option"];
+                    eyesPicOption = (int)(dataReadOut.SelectedItem as DataRowView).Row["Eyes Option"];
+                    nosePicOption = (int)(dataReadOut.SelectedItem as DataRowView).Row["Nose Option"];
+                    mouthPicOption = (int)(dataReadOut.SelectedItem as DataRowView).Row["Mouth Option"];
+
+
                     Trace.WriteLine("Selected = " + current_primary_key + fNameSpace.Text + lNameSpace.Text);
                 }
                 catch
@@ -642,10 +706,13 @@ namespace Assignment9
         {
             if (current_primary_key > -1)
             {
-                upPerson(current_primary_key, fNameSpace.Text, lNameSpace.Text, citySpace.Text, OccupationDropdown.SelectedIndex, HobbyDropdown.SelectedIndex);
+                upPerson(current_primary_key, fNameSpace.Text, lNameSpace.Text, citySpace.Text, OccupationDropdown.SelectedIndex, HobbyDropdown.SelectedIndex, 1, hairPicOption, eyesPicOption, nosePicOption, mouthPicOption);
 
                 // Update changes to the grid
                 FillDataGrid();
+            } else
+            {
+                MessageBox.Show("Please select a user to edit!");
             }
         }
 
