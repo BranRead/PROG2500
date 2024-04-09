@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Assignment9"
         xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib" x:Class="Assignment9.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="647.7" Width="1000"
         FontFamily="{StaticResource PixelifySans}" Background="#FFFFECEC">
     <Grid>
         <Menu x:Name="Menu" Margin="0,8,0,0" RenderTransformOrigin="0.553,1.652" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="99" Panel.ZIndex="10">
@@ -26,7 +26,7 @@
             <MenuItem Header="_Help" Command="{Binding help}" InputGestureText="Ctrl+I" AutomationProperties.Name="Help"/>
         </Menu>
 
-        <Grid Margin="0,0,0,35" Panel.ZIndex="10" RenderTransformOrigin="0.441,0.544" HorizontalAlignment="Center" Width="160" Height="34" VerticalAlignment="Bottom">
+        <Grid Margin="0,570,0,0" Panel.ZIndex="10" RenderTransformOrigin="0.441,0.544" HorizontalAlignment="Center" Width="160" Height="34" VerticalAlignment="Top">
             <Button x:Name="Previous" Content="Previous" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="34" Width="75" Click="Previous_Page"/>
             <Button x:Name="Next" Content="Next" HorizontalAlignment="Left" Margin="85,0,0,0" VerticalAlignment="Top" Click="Next_Page" Height="34" Width="75"/>
         </Grid>
@@ -64,7 +64,7 @@
                     <CheckBox x:Name="NoseCheckbox" Content="Nose" HorizontalAlignment="Right" Margin="0,221,106,0" Height="20" Width="65" VerticalAlignment="Top" IsChecked="True" RenderTransformOrigin="1.049,0.493"/>
                     <CheckBox x:Name="MouthCheckbox" Content="Mouth" HorizontalAlignment="Right" Margin="0,251,106,0" Width="65" IsChecked="True" Height="22" VerticalAlignment="Top"/>
 
-                    <Image x:Name="BaseFace" HorizontalAlignment="Center" Height="288" VerticalAlignment="Top" Width="288" Source="/images/base_face_light.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                    <Image x:Name="BaseFace" HorizontalAlignment="Center" Height="288" VerticalAlignment="Top" Width="288" Source="/images/base_face_1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                         RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1" Margin="0,10,0,0"/>
                     <Image x:Name="Hair" HorizontalAlignment="Center" Height="288" VerticalAlignment="Top" Width="288" Source="/images/hair1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                         RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Margin="0,10,0,0"/>
@@ -74,7 +74,7 @@
                         RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Margin="0,10,0,0"/>
                     <Image x:Name="Mouth" HorizontalAlignment="Center" Height="288" VerticalAlignment="Top" Width="288" Source="/images/mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                         RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Margin="0,10,0,0"/>
-                    <Label Content="Character Appearance" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="392" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Foreground="Black"/>
+                    <Label Content="Character Appearance" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="392" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Foreground="Black" Margin="0,-92,0,0"/>
 
                 </Grid>
             </TabItem>
@@ -85,25 +85,25 @@
                         <GradientStop Color="#FF9C9C9C" Offset="1"/>
                     </LinearGradientBrush>
                 </TabItem.Background>
-                <Grid Background="#FF9C9C9C" Height="341" Margin="0,0,17,0">
+                <Grid Background="#FF9C9C9C" Height="371" Margin="20,0,7,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="251*"/>
-                        <ColumnDefinition Width="168*"/>
-                        <ColumnDefinition Width="10*"/>
-                        <ColumnDefinition Width="19*"/>
+                        <ColumnDefinition Width="312*"/>
+                        <ColumnDefinition Width="209*"/>
                         <ColumnDefinition Width="12*"/>
-                        <ColumnDefinition Width="21*"/>
-                        <ColumnDefinition Width="10*"/>
-                        <ColumnDefinition Width="20*"/>
-                        <ColumnDefinition Width="21*"/>
                         <ColumnDefinition Width="24*"/>
-                        <ColumnDefinition Width="27*"/>
-                        <ColumnDefinition Width="19*"/>
-                        <ColumnDefinition Width="175*"/>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="26*"/>
+                        <ColumnDefinition Width="12*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="26*"/>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="57*"/>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="218*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock x:Name="fName" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" Text="First name:" VerticalAlignment="Top" Width="68" Grid.Column="1" Height="17"/>
-                    <TextBlock x:Name="lName" HorizontalAlignment="Left" Margin="10,58,0,0" TextWrapping="Wrap" Text="Last name:" VerticalAlignment="Top" Width="68" Grid.Column="1"/>
-                    <TextBlock x:Name="address" HorizontalAlignment="Left" Margin="10,77,0,0" TextWrapping="Wrap" Text="Address:" VerticalAlignment="Top" Width="68" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Height="14">
+                    <TextBlock x:Name="fName" HorizontalAlignment="Left" Margin="101,119,0,0" TextWrapping="Wrap" Text="First name:" VerticalAlignment="Top" Width="68" Height="17"/>
+                    <TextBlock x:Name="lName" HorizontalAlignment="Left" Margin="95,154,0,0" TextWrapping="Wrap" Text="Last name:" VerticalAlignment="Top" Width="68" Height="14"/>
+                    <TextBlock x:Name="address" HorizontalAlignment="Left" Margin="108,190,0,0" TextWrapping="Wrap" Text="Address:" VerticalAlignment="Top" Width="58" RenderTransformOrigin="0.5,0.5" Height="14">
                         <TextBlock.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -113,33 +113,33 @@
                             </TransformGroup>
                         </TextBlock.RenderTransform>
                     </TextBlock>
-                    <Image x:Name="BaseFaceResult" HorizontalAlignment="Left" Height="288" VerticalAlignment="Top" Width="288" Source="/images/base_face_light.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
-                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1" Margin="10,18,0,0" Grid.ColumnSpan="2"/>
-                    <Image x:Name="HairResult" HorizontalAlignment="Left" Height="288" Margin="10,18,0,0" VerticalAlignment="Top" Width="288" Source="/images/hair1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
-                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Grid.ColumnSpan="2"/>
-                    <Image x:Name="EyesResult" HorizontalAlignment="Left" Height="288" Margin="10,18,0,0" VerticalAlignment="Top" Width="288" Source="/images/eyes1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
-                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Grid.ColumnSpan="2"/>
-                    <Image x:Name="NoseResult" HorizontalAlignment="Left" Height="288" Margin="10,18,0,0" VerticalAlignment="Top" Width="288" Source="/images/nose1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
-                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Grid.ColumnSpan="2"/>
-                    <Image x:Name="MouthResult" HorizontalAlignment="Left" Height="288" Margin="10,18,0,0" VerticalAlignment="Top" Width="288" Source="/images/mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
-                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2" Grid.ColumnSpan="2"/>
-                    <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="47,210,0,0" VerticalAlignment="Top" Click="saveButton_Click" Height="18" Width="40" Grid.Column="1" RenderTransformOrigin="-3.045,-5.485"/>
-                    <Button x:Name="clearButton" Content="Clear Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Click="clearButton_Click" Height="20" Width="112" Margin="81,247,0,0" Grid.Column="1" Grid.ColumnSpan="3"/>
-                    <Label Content="Your Character" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Foreground="Black" Margin="0,-10,39,310" Grid.ColumnSpan="2"/>
-                    <DataGrid Name="dataReadOut" Grid.Column="7" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="5,123,-12,62" SelectionChanged="dataReadOut_SelectionChanged" SelectedIndex="4" Grid.ColumnSpan="6"/>
-                    <TextBox Name="fNameSpace" Grid.Column="1" HorizontalAlignment="Left" Margin="89,36,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="4"/>
-                    <TextBox Name="lNameSpace" Grid.Column="1" HorizontalAlignment="Left" Margin="89,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="4"/>
-                    <TextBox Name="citySpace" Grid.Column="1" HorizontalAlignment="Left" Margin="89,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="4"/>
-                    <Button x:Name="Update" Grid.Column="1" Content="Update" HorizontalAlignment="Left" Margin="103,210,0,0" VerticalAlignment="Top" Click="Update_Click"/>
-                    <Button x:Name="Delete" Grid.Column="2" Content="Delete" HorizontalAlignment="Left" Margin="0,206,0,0" VerticalAlignment="Top" Click="Delete_Click" Grid.ColumnSpan="4" Width="55"/>
-                    <TextBox x:Name="searchBar" Grid.Column="10" HorizontalAlignment="Left" Margin="0,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
-                    <Label Grid.Column="10" Content="Search" HorizontalAlignment="Left" Margin="4,41,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="3"/>
-                    <Button x:Name="searchBtn" Grid.Column="12" Content="Search" HorizontalAlignment="Left" Margin="91,71,0,0" VerticalAlignment="Top" Click="searchBtn_Click"/>
-                    <Button x:Name="defaultView" Grid.Column="12" Content="See all" HorizontalAlignment="Left" Margin="29,293,0,0" VerticalAlignment="Top" Click="defaultView_Click" Width="60"/>
-                    <ComboBox x:Name="OccupationDropdown" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" Margin="89,109,0,0" VerticalAlignment="Top" Width="120"/>
-                    <ComboBox x:Name="HobbyDropdown" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" Margin="89,150,0,0" VerticalAlignment="Top" Width="120"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="15,112,0,0" TextWrapping="Wrap" Text="Occupation:" VerticalAlignment="Top"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="41,150,0,0" TextWrapping="Wrap" Text="Hobby:" VerticalAlignment="Top"/>
+                    <Image x:Name="BaseFaceResult" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="150" Source="/images/base_face_1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="1" Margin="112,-54,0,0"/>
+                    <Image x:Name="HairResult" HorizontalAlignment="Left" Height="150" Margin="112,-54,0,0" VerticalAlignment="Top" Width="150" Source="/images/hair1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2"/>
+                    <Image x:Name="EyesResult" HorizontalAlignment="Left" Height="150" Margin="112,-54,0,0" VerticalAlignment="Top" Width="150" Source="/images/eyes1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2"/>
+                    <Image x:Name="NoseResult" HorizontalAlignment="Left" Height="150" Margin="112,-54,0,0" VerticalAlignment="Top" Width="150" Source="/images/nose1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2"/>
+                    <Image x:Name="MouthResult" HorizontalAlignment="Left" Height="150" Margin="112,-54,0,0" VerticalAlignment="Top" Width="150" Source="/images/mouth1.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                        RenderOptions.EdgeMode="Aliased" Panel.ZIndex="2"/>
+                    <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="147,328,0,0" VerticalAlignment="Top" Click="saveButton_Click" Height="18" Width="40" RenderTransformOrigin="-3.045,-5.485"/>
+                    <Button x:Name="clearButton" Content="Clear Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Click="clearButton_Click" Height="20" Width="104" Margin="115,351,0,0"/>
+                    <Label Content="Your Character" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Foreground="Black" Margin="-54,-126,93,425" Grid.ColumnSpan="2"/>
+                    <DataGrid Name="dataReadOut" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="116,80,114,105" SelectionChanged="dataReadOut_SelectionChanged" SelectedIndex="4" Grid.ColumnSpan="12"/>
+                    <TextBox Name="fNameSpace" HorizontalAlignment="Left" Margin="187,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="16"/>
+                    <TextBox Name="lNameSpace" HorizontalAlignment="Left" Margin="187,157,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="16"/>
+                    <TextBox Name="citySpace" HorizontalAlignment="Left" Margin="187,185,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="16"/>
+                    <Button x:Name="Update" Content="Update" HorizontalAlignment="Left" Margin="5,271,0,0" VerticalAlignment="Top" Click="Update_Click" Grid.Column="5" Grid.ColumnSpan="3" Height="18" Width="46"/>
+                    <Button x:Name="Delete" Grid.Column="8" Content="Delete" HorizontalAlignment="Left" Margin="10,271,0,0" VerticalAlignment="Top" Click="Delete_Click" Grid.ColumnSpan="3" Width="55" Height="18"/>
+                    <TextBox x:Name="searchBar" Grid.Column="1" HorizontalAlignment="Left" Margin="179,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="7" Height="16"/>
+                    <Label Grid.Column="1" Content="Search" HorizontalAlignment="Left" Margin="116,54,0,0" VerticalAlignment="Top" Width="55" Height="21"/>
+                    <Button x:Name="searchBtn" Grid.Column="7" Content="Search" HorizontalAlignment="Left" Margin="13,55,0,0" VerticalAlignment="Top" Click="searchBtn_Click" Grid.ColumnSpan="3" Height="18" Width="46"/>
+                    <Button x:Name="defaultView" Grid.Column="10" Content="See all" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Click="defaultView_Click" Width="57" Height="18"/>
+                    <ComboBox x:Name="OccupationDropdown" HorizontalAlignment="Left" Margin="35,246,0,0" VerticalAlignment="Top" Width="120" Height="20" MaxDropDownHeight="100"/>
+                    <ComboBox x:Name="HobbyDropdown" HorizontalAlignment="Left" Margin="182,246,0,0" VerticalAlignment="Top" Width="120" Height="20" MaxDropDownHeight="100"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="60,230,0,0" TextWrapping="Wrap" Text="Occupation:" VerticalAlignment="Top" Height="14" Width="69"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="220,230,0,0" TextWrapping="Wrap" Text="Hobby:" VerticalAlignment="Top" Height="14" Width="37"/>
                 </Grid>
             </TabItem>
         </TabControl>

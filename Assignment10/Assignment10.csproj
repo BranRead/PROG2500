@@ -141,8 +141,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\base_face_dark.png" />
-    <Resource Include="images\base_face_light.png" />
+    <Resource Include="images\base_face_2.png" />
+    <Resource Include="images\base_face_1.png" />
     <Resource Include="images\eyes1.png" />
     <Resource Include="images\eyes2.png" />
     <Resource Include="images\eyes3.png" />

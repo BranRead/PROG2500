@@ -43,6 +43,7 @@ namespace Assignment9
 
         int current_primary_key = -1;
 
+        int baseFaceOption = 1;
 
         int hairPicOption = 1;
         int hairNumOfPhotos = 8;
@@ -58,8 +59,6 @@ namespace Assignment9
 
         List<TabItem> pages = new List<TabItem>();
 
-
-
         HotKey BackHair = new(() => Change_Body_Part("Hair", false), true);
         HotKey ForwardHair = new(() => Change_Body_Part("Hair", true), true);
         HotKey BackEyes = new(() => Change_Body_Part("Eyes", false), true);
@@ -69,8 +68,8 @@ namespace Assignment9
         HotKey BackMouth = new(() => Change_Body_Part("Mouth", false), true);
         HotKey ForwardMouth = new(() => Change_Body_Part("Mouth", true), true);
         HotKey Randomize = new(Randomize_Face, true);
-        HotKey NewDarkSkin = new(() => New_Skin_Tone("dark"), true);
-        HotKey NewLightSkin = new(() => New_Skin_Tone("light"), true);
+        HotKey NewDarkSkin = new(() => New_Skin_Tone(2), true);
+        HotKey NewLightSkin = new(() => New_Skin_Tone(1), true);
         HotKey Exit = new(Exit_App, true);
         HotKey Help = new(Help_Menu, true);
 
@@ -363,9 +362,7 @@ namespace Assignment9
             {
                 if (!isForward)
                 {
-                    
                     thisEditer.Previous_Image(thisWindow.Hair, thisWindow.HairResult, part.ToLower(), ref thisWindow.hairPicOption, thisWindow.hairNumOfPhotos);
-
                 }
                 else
                 {
@@ -396,17 +393,13 @@ namespace Assignment9
             {
                 if (!isForward)
                 {
-
                     thisEditer.Previous_Image(thisWindow.Nose, thisWindow.NoseResult, part.ToLower(), ref thisWindow.nosePicOption, thisWindow.noseNumOfPhotos);
-
                 }
                 else
                 {
-
                     thisEditer.Next_Image(thisWindow.Nose, thisWindow.NoseResult, part.ToLower(), ref thisWindow.nosePicOption, thisWindow.noseNumOfPhotos);
-
-                    Update_Label(part, thisWindow.NoseLabel, thisWindow.nosePicOption);
                 }
+                Update_Label(part, thisWindow.NoseLabel, thisWindow.nosePicOption);
             }
 
             if (part == "Mouth")
@@ -456,11 +449,13 @@ namespace Assignment9
             label.Text = part + " " + (index);
         }
 
-        public static void New_Skin_Tone(string tone)
+        public static void New_Skin_Tone(int skinOption)
         {
             MainWindow thisWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
+            thisWindow.baseFaceOption = skinOption;
             Editer thisEditer = thisWindow.editer;
-            thisEditer.Set_Base_Face(tone, thisWindow.BaseFace);
+            thisEditer.Set_Base_Face(skinOption, thisWindow.BaseFace);
+            thisEditer.Set_Base_Face(skinOption, thisWindow.BaseFaceResult);
         }
 
         public static void Help_Menu()
@@ -488,11 +483,12 @@ namespace Assignment9
             String a = citySpace.Text;
             int occupation = OccupationDropdown.SelectedIndex;
             int hobby = HobbyDropdown.SelectedIndex;
-            int baseFace = 1;
+            int baseFace = baseFaceOption;
             int hair = hairPicOption;
             int eyes = eyesPicOption;
             int nose = nosePicOption;
             int mouth = mouthPicOption;
+
 
             // Add this record if values not empty
             if (fn != "" && ln != "" && a != "" && occupation > 0 && hobby > 0)
@@ -658,7 +654,7 @@ namespace Assignment9
 
         private void dataReadOut_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dataReadOut.SelectedItem != null && isRunning && (dataReadOut.SelectedItem as DataRowView).Row["Person ID"] != null)
+            if (dataReadOut.SelectedItem != null && isRunning && dataReadOut.SelectedItem as DataRowView != null)
             {
                 // When we get here after deleting a row, we can't get the current row
                 try
@@ -671,42 +667,73 @@ namespace Assignment9
                     OccupationDropdown.SelectedIndex = OccupationDropdown.Items.IndexOf((string)(dataReadOut.SelectedItem as DataRowView).Row["Occupation"]);
                     HobbyDropdown.SelectedIndex = HobbyDropdown.Items.IndexOf((string)(dataReadOut.SelectedItem as DataRowView).Row["Hobby"]);
 
-                    editer.Update_Face("hair", HairResult, (int)(dataReadOut.SelectedItem as DataRowView).Row["Hair Option"]);
-                    editer.Update_Face("eyes", EyesResult, (int)(dataReadOut.SelectedItem as DataRowView).Row["Eyes Option"]);
-                    editer.Update_Face("nose", NoseResult, (int)(dataReadOut.SelectedItem as DataRowView).Row["Nose Option"]);
-                    editer.Update_Face("mouth", MouthResult, (int)(dataReadOut.SelectedItem as DataRowView).Row["Mouth Option"]);
-
-                    editer.Update_Face("hair", Hair, (int)(dataReadOut.SelectedItem as DataRowView).Row["Hair Option"]);
-                    editer.Update_Face("eyes", Eyes, (int)(dataReadOut.SelectedItem as DataRowView).Row["Eyes Option"]);
-                    editer.Update_Face("nose", Nose, (int)(dataReadOut.SelectedItem as DataRowView).Row["Nose Option"]);
-                    editer.Update_Face("mouth", Mouth, (int)(dataReadOut.SelectedItem as DataRowView).Row["Mouth Option"]);
-
+                    baseFaceOption = (int)(dataReadOut.SelectedItem as DataRowView).Row["Base Face Option"];
                     hairPicOption = (int)(dataReadOut.SelectedItem as DataRowView).Row["Hair Option"];
                     eyesPicOption = (int)(dataReadOut.SelectedItem as DataRowView).Row["Eyes Option"];
                     nosePicOption = (int)(dataReadOut.SelectedItem as DataRowView).Row["Nose Option"];
                     mouthPicOption = (int)(dataReadOut.SelectedItem as DataRowView).Row["Mouth Option"];
 
 
+                    editer.Set_Base_Face(baseFaceOption, BaseFaceResult);
+                    editer.Update_Face("hair", HairResult, hairPicOption);
+                    editer.Update_Face("eyes", EyesResult, eyesPicOption);
+                    editer.Update_Face("nose", NoseResult, nosePicOption);
+                    editer.Update_Face("mouth", MouthResult, mouthPicOption);
+
+                    editer.Set_Base_Face(baseFaceOption, BaseFace);
+                    editer.Update_Face("hair", Hair, hairPicOption);
+                    editer.Update_Face("eyes", Eyes, eyesPicOption);
+                    editer.Update_Face("nose", Nose, nosePicOption);
+                    editer.Update_Face("mouth", Mouth, mouthPicOption);
+
+                    Update_Label("Hair", HairLabel, hairPicOption);
+                    Update_Label("Eyes", EyesLabel, eyesPicOption);
+                    Update_Label("Nose", NoseLabel, nosePicOption);
+                    Update_Label("Mouth", MouthLabel, mouthPicOption);
+
+
                     Trace.WriteLine("Selected = " + current_primary_key + fNameSpace.Text + lNameSpace.Text);
                 }
-                catch
+                catch //(Exception except)
                 {
+                    // MessageBox.Show("Selection error: " + except);
                     // If deleting row, get exception trying to get it's data
                     Trace.WriteLine("No Row (deleted?)...default record used");
                     current_primary_key = -1;
-                    fNameSpace.Text = ":(";
-                    lNameSpace.Text = ":(";
-                    citySpace.Text = ":(";
+                    fNameSpace.Text = "";
+                    lNameSpace.Text = "";
+                    citySpace.Text = "";
+                    OccupationDropdown.SelectedIndex = 0;
+                    HobbyDropdown.SelectedIndex = 0;
+
+                    hairPicOption = 1;
+                    eyesPicOption = 1;
+                    nosePicOption = 1;
+                    mouthPicOption = 1;
+
+                    editer.Update_Face("hair", HairResult, hairPicOption);
+                    editer.Update_Face("eyes", EyesResult, eyesPicOption);
+                    editer.Update_Face("nose", NoseResult, nosePicOption);
+                    editer.Update_Face("mouth", MouthResult, mouthPicOption);
+
+                    editer.Update_Face("hair", Hair, hairPicOption);
+                    editer.Update_Face("eyes", Eyes, eyesPicOption);
+                    editer.Update_Face("nose", Nose, nosePicOption);
+                    editer.Update_Face("mouth", Mouth, mouthPicOption);
+
+                    Update_Label("Hair", HairLabel, hairPicOption);
+                    Update_Label("Eyes", EyesLabel, eyesPicOption);
+                    Update_Label("Nose", NoseLabel, nosePicOption);
+                    Update_Label("Mouth", MouthLabel, mouthPicOption);
                 }
             }
-
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             if (current_primary_key > -1)
             {
-                upPerson(current_primary_key, fNameSpace.Text, lNameSpace.Text, citySpace.Text, OccupationDropdown.SelectedIndex, HobbyDropdown.SelectedIndex, 1, hairPicOption, eyesPicOption, nosePicOption, mouthPicOption);
+                upPerson(current_primary_key, fNameSpace.Text, lNameSpace.Text, citySpace.Text, OccupationDropdown.SelectedIndex, HobbyDropdown.SelectedIndex, baseFaceOption, hairPicOption, eyesPicOption, nosePicOption, mouthPicOption);
 
                 // Update changes to the grid
                 FillDataGrid();

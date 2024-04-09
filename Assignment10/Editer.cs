@@ -56,9 +56,9 @@ namespace Assignment9
             imageResult.Source = new BitmapImage(new Uri("/images/" + part + index + ".png", UriKind.Relative));
         }
 
-        public void Set_Base_Face(string part, Image image) 
+        public void Set_Base_Face(int option, Image image) 
         {
-            image.Source = new BitmapImage(new Uri("/images/base_face_" + part + ".png", UriKind.Relative));
+            image.Source = new BitmapImage(new Uri("/images/base_face_" + option + ".png", UriKind.Relative));
         }
 
         public void Update_Face(string part, Image image, int index) 
