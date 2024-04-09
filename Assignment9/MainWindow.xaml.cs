@@ -425,9 +425,6 @@ namespace Assignment9
 
         private void clearButton_Click(object sender, RoutedEventArgs e)
         {
-
-
-
             fNameSpace.Text = string.Empty;
             lNameSpace.Text = string.Empty;
             citySpace.Text = string.Empty;
